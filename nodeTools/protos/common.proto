@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package common;
+
+option java_package = "com.org.platform.websocket.common";
+
+message Empty {
+
+}
+
+message ErrorMessage {
+  int32 code = 1;
+  string msg = 2;
+}

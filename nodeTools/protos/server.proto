@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package server;
+
+option java_package = "com.org.platform.websocket.server";
+
+message WebSocketEventInfo {
+  string bid = 1;
+  int64 uid = 2;
+  WebSocketEventType type = 3;
+//  required string time = 4;
+  int64 timestamp = 5;
+  /*
+   * 这里必须使用bytes，因为消息由 game-ws-service 转发，且通常情况下此服务不会重启。
+   * 如果 body 是游戏的 Request 对象的话，game-ws-service 一直是旧的对象，解码后，
+   * 可能会丢失新加字段的数据，因此这里直接转发 bytes 数据，在对应服务去解码（game-ws-service 也需要尝试解码，避免错误消息转发）
+   */
+  bytes body = 6;
+}
+
+enum WebSocketEventType {
+  CLIENT_OPEN = 0;
+  CLIENT_CLOSE = 1;
+  CLIENT_MESSAGE = 2;
+  SERVER_MESSAGE = 3;
+}

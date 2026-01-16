@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package client;
+
+option java_package = "com.org.platform.websocket.client";
+
+enum RequestCode {
+  INVALID_REQUEST = 0;
+  PING = 1;
+}
+
+enum ResponseCode {
+  INVALID_RESPONSE = 0;
+  PONG = 1;
+  ERROR = 2;
+}
+
+
+
+message Request {
+  RequestCode cmd = 1;
+  // 没有body的消息，可以不传body，但只要传了body，oneof 里的就必须设置一个
+//  RequestBody body = 2;
+}
+
+message RequestBody {
+  oneof body {
+    Test demo = 1;
+  }
+}
+message Response {
+  ResponseCode cmd = 1;
+  // 没有body的消息，可以不传body，但只要传了body，oneof 里的就必须设置一个
+  ResponseBody body = 2;
+}
+
+message ResponseBody {
+  oneof body {
+    ErrorMessage error = 1;
+  }
+}
+
+message Test {
+
+}
+
+message ErrorMessage {
+  int32 code = 1;
+  string msg = 2;
+}

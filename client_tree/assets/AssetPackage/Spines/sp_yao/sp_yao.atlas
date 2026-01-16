@@ -1,0 +1,292 @@
+
+sp_yao.png
+size: 1856,1856
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+摇一摇_00000
+  rotate: true
+  xy: 2, 1516
+  size: 337, 348
+  orig: 375, 385
+  offset: 16, 14
+  index: -1
+摇一摇_00001
+  rotate: true
+  xy: 1071, 1507
+  size: 346, 359
+  orig: 375, 385
+  offset: 11, 7
+  index: -1
+摇一摇_00002
+  rotate: true
+  xy: 352, 1513
+  size: 340, 357
+  orig: 375, 385
+  offset: 16, 8
+  index: -1
+摇一摇_00003
+  rotate: true
+  xy: 711, 1508
+  size: 345, 358
+  orig: 375, 385
+  offset: 14, 8
+  index: -1
+摇一摇_00004
+  rotate: true
+  xy: 734, 797
+  size: 353, 367
+  orig: 375, 385
+  offset: 11, 3
+  index: -1
+摇一摇_00005
+  rotate: true
+  xy: 1103, 797
+  size: 353, 367
+  orig: 375, 385
+  offset: 12, 3
+  index: -1
+摇一摇_00006
+  rotate: true
+  xy: 737, 441
+  size: 354, 367
+  orig: 375, 385
+  offset: 12, 3
+  index: -1
+摇一摇_00007
+  rotate: true
+  xy: 1106, 441
+  size: 354, 368
+  orig: 375, 385
+  offset: 11, 3
+  index: -1
+摇一摇_00008
+  rotate: true
+  xy: 744, 84
+  size: 355, 368
+  orig: 375, 385
+  offset: 10, 3
+  index: -1
+摇一摇_00009
+  rotate: true
+  xy: 1114, 84
+  size: 355, 368
+  orig: 375, 385
+  offset: 10, 3
+  index: -1
+摇一摇_00011
+  rotate: true
+  xy: 734, 1153
+  size: 352, 364
+  orig: 375, 385
+  offset: 9, 5
+  index: -1
+摇一摇_00012
+  rotate: true
+  xy: 1100, 1152
+  size: 352, 365
+  orig: 375, 385
+  offset: 8, 5
+  index: -1
+摇一摇_00013
+  rotate: true
+  xy: 1484, 83
+  size: 356, 369
+  orig: 375, 385
+  offset: 5, 3
+  index: -1
+摇一摇_00017
+  rotate: true
+  xy: 1472, 797
+  size: 353, 366
+  orig: 375, 385
+  offset: 3, 4
+  index: -1
+摇一摇_00018
+  rotate: true
+  xy: 2, 446
+  size: 353, 366
+  orig: 375, 385
+  offset: 2, 4
+  index: -1
+摇一摇_00025
+  rotate: true
+  xy: 370, 442
+  size: 353, 365
+  orig: 375, 385
+  offset: 8, 5
+  index: -1
+摇一摇_00026
+  rotate: true
+  xy: 1476, 441
+  size: 354, 371
+  orig: 375, 385
+  offset: 7, 1
+  index: -1
+摇一摇_00029
+  rotate: true
+  xy: 1467, 1152
+  size: 352, 365
+  orig: 375, 385
+  offset: 8, 5
+  index: -1
+摇一摇_00033
+  rotate: true
+  xy: 2, 802
+  size: 352, 364
+  orig: 375, 385
+  offset: 8, 5
+  index: -1
+摇一摇_00034
+  rotate: true
+  xy: 2, 86
+  size: 354, 369
+  orig: 375, 385
+  offset: 7, 2
+  index: -1
+摇一摇_00035
+  rotate: true
+  xy: 373, 85
+  size: 354, 369
+  orig: 375, 385
+  offset: 7, 2
+  index: -1
+摇一摇_00036
+  rotate: true
+  xy: 2, 1163
+  size: 348, 362
+  orig: 375, 385
+  offset: 10, 6
+  index: -1
+摇一摇_00037
+  rotate: true
+  xy: 368, 801
+  size: 353, 364
+  orig: 375, 385
+  offset: 7, 5
+  index: -1
+摇一摇_00038
+  rotate: true
+  xy: 366, 1156
+  size: 350, 366
+  orig: 375, 385
+  offset: 9, 3
+  index: -1
+摇一摇_00039
+  rotate: true
+  xy: 1432, 1506
+  size: 347, 359
+  orig: 375, 385
+  offset: 10, 7
+  index: -1
+
+sp_yao2.png
+size: 1492,1492
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+摇一摇_00010
+  rotate: true
+  xy: 746, 775
+  size: 357, 369
+  orig: 375, 385
+  offset: 7, 3
+  index: -1
+摇一摇_00014
+  rotate: true
+  xy: 2, 1134
+  size: 356, 371
+  orig: 375, 385
+  offset: 5, 1
+  index: -1
+摇一摇_00015
+  rotate: true
+  xy: 375, 1134
+  size: 356, 369
+  orig: 375, 385
+  offset: 3, 3
+  index: -1
+摇一摇_00016
+  rotate: true
+  xy: 746, 1134
+  size: 356, 371
+  orig: 375, 385
+  offset: 2, 2
+  index: -1
+摇一摇_00019
+  rotate: true
+  xy: 1117, 775
+  size: 357, 370
+  orig: 375, 385
+  offset: 1, 2
+  index: -1
+摇一摇_00020
+  rotate: true
+  xy: 2, 417
+  size: 357, 371
+  orig: 375, 385
+  offset: 2, 2
+  index: -1
+摇一摇_00021
+  rotate: true
+  xy: 375, 416
+  size: 357, 371
+  orig: 375, 385
+  offset: 3, 2
+  index: -1
+摇一摇_00022
+  rotate: true
+  xy: 748, 416
+  size: 357, 370
+  orig: 375, 385
+  offset: 4, 2
+  index: -1
+摇一摇_00023
+  rotate: true
+  xy: 1120, 416
+  size: 357, 370
+  orig: 375, 385
+  offset: 5, 2
+  index: -1
+摇一摇_00024
+  rotate: true
+  xy: 375, 56
+  size: 358, 372
+  orig: 375, 385
+  offset: 5, 1
+  index: -1
+摇一摇_00027
+  rotate: true
+  xy: 2, 57
+  size: 358, 371
+  orig: 375, 385
+  offset: 5, 1
+  index: -1
+摇一摇_00028
+  rotate: true
+  xy: 749, 56
+  size: 358, 371
+  orig: 375, 385
+  offset: 5, 1
+  index: -1
+摇一摇_00030
+  rotate: true
+  xy: 1119, 1134
+  size: 356, 371
+  orig: 375, 385
+  offset: 6, 1
+  index: -1
+摇一摇_00031
+  rotate: true
+  xy: 2, 776
+  size: 356, 369
+  orig: 375, 385
+  offset: 6, 2
+  index: -1
+摇一摇_00032
+  rotate: true
+  xy: 373, 776
+  size: 356, 371
+  orig: 375, 385
+  offset: 6, 1
+  index: -1
