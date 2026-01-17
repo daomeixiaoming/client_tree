@@ -4,10 +4,23 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>common_btnclose.png</key>
+            <key>common_9bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,167},{60,60}}</string>
+                <string>{{2,2},{40,1012}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{40,1012}}</string>
+                <key>sourceSize</key>
+                <string>{40,1012}</string>
+            </dict>
+            <key>common_btnback.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{569,106},{60,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -17,10 +30,36 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
+            <key>common_btnclose.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{507,106},{60,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+            <key>common_helptitle.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{466,44},{158,39}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{158,39}}</string>
+                <key>sourceSize</key>
+                <string>{158,39}</string>
+            </dict>
             <key>common_loading_bar.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{64,203},{381,12}}</string>
+                <string>{{507,80},{381,12}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +72,7 @@
             <key>common_loading_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{64,167},{405,34}}</string>
+                <string>{{507,44},{405,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +85,7 @@
             <key>common_title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{462,163}}</string>
+                <string>{{2,44},{462,163}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
@@ -56,6 +95,58 @@
                 <key>sourceSize</key>
                 <string>{462,181}</string>
             </dict>
+            <key>common_titleline.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{976,44},{46,24}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{46,24}}</string>
+                <key>sourceSize</key>
+                <string>{46,24}</string>
+            </dict>
+            <key>common_toast_9bg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{914,44},{60,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+            <key>common_toast_icon.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{631,156},{48,48}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{48,48}}</string>
+                <key>sourceSize</key>
+                <string>{48,48}</string>
+            </dict>
+            <key>common_toast_icon2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{631,106},{48,48}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{48,48}}</string>
+                <key>sourceSize</key>
+                <string>{48,48}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -64,9 +155,9 @@
             <key>realTextureFileName</key>
             <string>Common.png</string>
             <key>size</key>
-            <string>{471,229}</string>
+            <string>{1016,209}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8ed86b44ac2ca0fe8e59e81db5c5e7f1$</string>
+            <string>$TexturePacker:SmartUpdate:617d7b8a9d759d9070ffafe1b552d68d$</string>
             <key>textureFileName</key>
             <string>Common.png</string>
         </dict>

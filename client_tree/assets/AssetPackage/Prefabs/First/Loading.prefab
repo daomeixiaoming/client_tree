@@ -31,10 +31,13 @@
       },
       {
         "__id__": 31
+      },
+      {
+        "__id__": 32
       }
     ],
     "_prefab": {
-      "__id__": 32
+      "__id__": 33
     },
     "_opacity": 255,
     "_color": {
@@ -58,8 +61,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        375,
+        812,
         0,
         0,
         0,
@@ -1133,6 +1136,16 @@
   },
   {
     "__type__": "cc.BlockInputEvents",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_id": ""
+  },
+  {
+    "__type__": "4f61eYjRqlF6ZgHYSu9MnwC",
     "_name": "",
     "_objFlags": 0,
     "node": {
