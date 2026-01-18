@@ -11,6 +11,7 @@ export const EventKey = {
     UI_LoadingEnd: "UI_LoadingEnd", //显示加载结束
     UI_GotoLogin: "UI_GotoLogin", //大厅返回到登录页
 
+
     /** 更新瞄钻和龙币数据 */
     Update_Currency: "Update_Currency",
 
@@ -108,4 +109,8 @@ export const EventKey = {
     WS_MSG_108: "WS_MSG_108",
     /** 金币发生变化 */
     WS_MSG_109: "WS_MSG_109",
+
+    //---------------------------------------------
+    /** 个人记录返回 */
+    MSG_GETRECORD_LIST: "MSG_GETRECORD_LIST",
 };

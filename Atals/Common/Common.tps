@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../../client_tree/assets/AssetPackage/Atals/Common.png</filename>
+        <filename>../../client_tree/assets/AssetPackage/Atals/First/Common.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>../../client_tree/assets/AssetPackage/Atals/Common.plist</filename>
+        <filename>../../client_tree/assets/AssetPackage/Atals/First/Common.plist</filename>
         <key>mainExtension</key>
         <string></string>
         <key>forceIdenticalLayout</key>

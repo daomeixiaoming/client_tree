@@ -49,13 +49,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>Nan.png</string>
+            <string>Notice.png</string>
             <key>size</key>
             <string>{253,253}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e7c477cd4288f040cfa2f68bfc60011b$</string>
+            <string>$TexturePacker:SmartUpdate:202112c61d75f0fece802420c80dfbf4$</string>
             <key>textureFileName</key>
-            <string>Nan.png</string>
+            <string>Notice.png</string>
         </dict>
     </dict>
 </plist>

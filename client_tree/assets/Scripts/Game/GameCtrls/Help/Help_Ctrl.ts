@@ -17,7 +17,7 @@ export default class Help_Ctrl extends UIBase {
     }
 
     start() {
-        this.RunAnimation("node/bg");
+        // this.RunAnimation("node/bg");
     }
 
     private initUI() {
@@ -26,14 +26,16 @@ export default class Help_Ctrl extends UIBase {
 
         this.AddButtonListener("node/bg/btnBack", this, this.onCloseBtn);
 
-        // let sp_help = this.ViewComponent("node/bg/scrollView/view/content/item", cc.Sprite) as cc.Sprite;
-        // let cfg = GameLogic.Instance.gameCfg;
-        // if (cfg) {
-        //     let paths = GameUtils.extractImgSrcWithRegex(cfg.regulation);
-        //     if (paths.length > 0) {
-        //         CocosUtils.loadRemoteSprite(paths[0], sp_help, () => { })
-        //     }
-        // }
+        let sp_help = this.ViewComponent("node/bg/nanBg/scrollView/view/content/sp1", cc.Sprite) as cc.Sprite;
+        let sp_help2 = this.ViewComponent("node/bg/nanBg/scrollView/view/content/sp2", cc.Sprite) as cc.Sprite;
+        let cfg = GameLogic.Instance.gameCfg;
+        if (cfg) {
+            let paths = GameUtils.extractImgSrcWithRegex(cfg.regulation);
+            if (paths.length > 0) {
+                CocosUtils.loadRemoteSprite(paths[0], sp_help, () => { })
+                CocosUtils.loadRemoteSprite(paths[1], sp_help2, () => { })
+            }
+        }
 
         // this.sp9Bg = this.view["node/bg/scrollView/view/sp9Bg"] as cc.Node;
 

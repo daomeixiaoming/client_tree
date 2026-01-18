@@ -52,7 +52,7 @@ export default class UIViewMgr extends cc.Component {
     }
 
     /**
-     * 展示个人记录 ok
+     * 展示个人记录 ok1
      */
     public showReward() {
         if (this.isLoadRecord) {
@@ -70,7 +70,7 @@ export default class UIViewMgr extends cc.Component {
     }
 
     /**
-     * 展示帮助 ok
+     * 展示帮助 ok1
      */
     public showHelp() {
         if (this.isLoadHelp) {

@@ -4,6 +4,19 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>record_X1 .png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{290,2},{18,13}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{18,13}}</string>
+                <key>sourceSize</key>
+                <string>{18,13}</string>
+            </dict>
             <key>record_girdItem.png</key>
             <dict>
                 <key>frame</key>
@@ -105,7 +118,7 @@
             <key>size</key>
             <string>{312,312}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:647218a8ca662b29b52c838cf53b9cca$</string>
+            <string>$TexturePacker:SmartUpdate:ffc5983e3a1cff0fec58264fbe393fe2$</string>
             <key>textureFileName</key>
             <string>Record.png</string>
         </dict>

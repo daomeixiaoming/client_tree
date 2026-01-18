@@ -196,129 +196,102 @@ export interface RecordDetails {
 }
 //---------------------------------------------------------------个人记录 end---------------------------------------------------------------------
 
-//---------------------------------------------------------------中奖记录 start---------------------------------------------------------------------
-export interface ResultRes {
-    code?: number;
-    message?: string;
-    result?: number[];
+
+/**--------------------------------------------------------中奖记录请求 start------------------------------------------------------------------ */
+/** 中奖记录请求 */
+export interface GetRecordsReq {
+    /**
+     * 排序字段
+     */
+    column?: string;
+    /**
+     * true正序|false倒序,默认true
+     */
+    isAsc?: boolean;
+    /**
+     * 页码(不能为空)
+     */
+    pageNo: number;
+    /**
+     * 每页数量(不能为空)
+     */
+    pageSize: number;
+    /**
+     * 是否查询总条数
+     */
+    searchCount?: boolean;
+    /**
+     * 排序字段集合，注意参数名encodeURI
+     */
+    sortItemList?: SortItem[];
     [property: string]: any;
 }
-//---------------------------------------------------------------中奖记录 end---------------------------------------------------------------------
-
-//---------------------------------------------------------------筹码配置 start---------------------------------------------------------------------
-/** 筹码返回数据 */
-export interface ChipConfigRes {
+export interface SortItem {
     /**
-     * 筹码
+     * 排序字段
      */
-    chip: number;
+    column: string;
     /**
-     * 可选项ID
+     * true正序|false倒序
      */
-    optionId: number;
+    isAsc: boolean;
+    [property: string]: any;
 }
-//---------------------------------------------------------------筹码配置 end---------------------------------------------------------------------
-
-
-//---------------------------------------------------------------封神榜 start---------------------------------------------------------------------
-/** 返利配置返回item */
-export interface IuserRebateConfig {
-    no: string,
-    rate: number,
+export interface RewardResponse {
+    /**
+     * 中奖的礼物id
+     */
+    giftId?: number;
+    /**
+     * 礼物图标
+     */
+    giftImage?: string;
+    /**
+     * 礼物价值
+     */
+    giftPrice?: number;
+    /**
+     * 中奖的id
+     */
+    id?: number;
+    [property: string]: any;
 }
-
-export interface IUser {
-    /** 类型 1-用户等级（财富），2-主播等级（明星），3-vip等级	 */
-    type: number,
-    /** 等级 */
-    level: number,
-    /** 图标 */
-    icon: string,
-    /** 标签名字 */
-    name: string,
+export interface LuckyEggRecordsResponse {
+    /**
+     * 奖励列表
+     */
+    rewardList?: RewardResponse[];
+    time?: string;
+    [property: string]: any;
 }
-
-export interface IUser {
-    /** 类型 1-用户等级（财富），2-主播等级（明星），3-vip等级	 */
-    type: number,
-    /** 等级 */
-    level: number,
-    /**图标 */
-    icon: string,
-    /** 标签名字 */
-    name: string
+export interface GetRecordsRes {
+    /**
+     * 是否为空
+     */
+    emptyFlag?: boolean;
+    /**
+     * 结果集
+     */
+    list?: LuckyEggRecordsResponse[];
+    /**
+     * 其他属性对象
+     */
+    otherAttribute?: Object;
+    /**
+     * 当前页
+     */
+    pageNum?: number;
+    /**
+     * 总页数
+     */
+    pages?: number;
+    /**
+     * 每页的数量
+     */
+    pageSize?: number;
+    /**
+     * 总记录数
+     */
+    total?: number;
 }
-
-/**
- * 返利数据分页item
- */
-export interface IIuserRebatePageItem {
-    /** 用户id */
-    userId: number,
-    /** 用户外显id */
-    userNum: number,
-    /** 用户类型 1-用户，2-主播 */
-    userType: number,
-    /** 用户昵称 */
-    nickname: string,
-    /** 头像 */
-    avatar: string,
-    /** 性别（1：男，2：女） */
-    sex: number,
-    /** 用户等级 */
-    userLevel: number,
-    /** 用户标签 */
-    userLabelList: IUser[],
-    /** 返利铭牌 */
-    rebateLabel: IUser,
-    /** 排名 */
-    no: number,
-    /** 返利魔法石 */
-    rebateBet: number,
-    /** 消耗魔法石*/
-    totalBet: number,
-    /** 返利比例‰ */
-    rate: number,
-    /** 返利时间 */
-    rebateTime: string
-}
-
-/** 分页数据返回 */
-export interface IIuserRebatePageRes {
-    list: IIuserRebatePageItem[],
-    total: number,
-}
-
-//---------------------------------------------------------------封神榜 end---------------------------------------------------------------------
-
-//---------------------------------------------------------------商城返利 start---------------------------------------------------------------------
-export interface IIGetMallRebatesCfg {
-    /** 每日兑换礼物价值 */
-    giftPrice: number,
-    /** 平台返利，百分比 */
-    rebates: number
-}
-/** 商城返利配置列表 */
-export interface IGetMallRebatesConfRes {
-    /** 活动开关 */
-    activitySwitch: boolean,
-    /** 活动开始时间 */
-    startTime: string,
-    /** 活动结束时间 */
-    endTime: string,
-    /** 配置 */
-    items: IIGetMallRebatesCfg[],
-}
-
-export interface IgetUserMallRebates {
-    /** 当前等级 */
-    level: number,
-    /** 最大等级 */
-    maxLevel: number,
-    /** 购买兑换礼物价值 */
-    value: number,
-    /** 与下一级的差距，如果是-1，表示没有下一级了 */
-    need: number,
-    /** 下一级的返利比例，如果是-1，表示没有下一级了 */
-    next: number
-}
+/**--------------------------------------------------------中奖记录请求 end------------------------------------------------------------------ */

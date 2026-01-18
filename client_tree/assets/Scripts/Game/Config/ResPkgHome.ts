@@ -79,7 +79,7 @@ export const ResPkg_Record = {
     Prefabs: [
         {
             assetType: cc.Prefab,
-            urls: [UICfg.Record, UICfg.RecordItem1, UICfg.RecordItem1, UICfg.RecordGift],
+            urls: [UICfg.Record, UICfg.RecordItem1, UICfg.RecordItem2, UICfg.RecordGift],
         },
     ],
     Guis: [

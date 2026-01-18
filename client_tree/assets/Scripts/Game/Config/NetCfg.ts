@@ -12,7 +12,7 @@ export const NetCfg = {
     ? "https://dev.jumiao.live/"
     : "https://api.vvzb.live/",
   /** 游戏id*/
-  gameType: 120,
+  gameType: 122,
   /** 房间id */
   roomId: 2,
   /** 主播id */

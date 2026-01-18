@@ -49,7 +49,7 @@ export default class HomeMenu_Ctrl extends UIBase {
             button.interactable = true;
         }, 1);
 
-
+        UIViewMgr.Instance.showReward();
     }
 
     private onCloseClick(button: cc.Button) {

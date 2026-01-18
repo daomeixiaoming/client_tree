@@ -20,7 +20,7 @@
             <key>common_btnback.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{507,106},{60,60}}</string>
+                <string>{{569,106},{60,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>common_btnclose.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{914,44},{60,60}}</string>
+                <string>{{507,106},{60,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -108,6 +108,45 @@
                 <key>sourceSize</key>
                 <string>{46,24}</string>
             </dict>
+            <key>common_toast_9bg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{914,44},{60,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+            <key>common_toast_icon.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{631,156},{48,48}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{48,48}}</string>
+                <key>sourceSize</key>
+                <string>{48,48}</string>
+            </dict>
+            <key>common_toast_icon2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{631,106},{48,48}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{48,48}}</string>
+                <key>sourceSize</key>
+                <string>{48,48}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -118,7 +157,7 @@
             <key>size</key>
             <string>{1016,209}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b5e82634708b680054ec315713fc8419$</string>
+            <string>$TexturePacker:SmartUpdate:b37d471ffe1c6958a4352bd4cef1a538$</string>
             <key>textureFileName</key>
             <string>Common.png</string>
         </dict>
