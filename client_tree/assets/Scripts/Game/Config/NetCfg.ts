@@ -12,15 +12,15 @@ export const NetCfg = {
     ? "https://dev.jumiao.live/"
     : "https://api.vvzb.live/",
   /** 游戏id*/
-  gameType: 122,
+  gameType: 119,
   /** 房间id */
-  roomId: 2,
+  roomId: 1000008,
   /** 主播id */
-  anchorId: 10001397,
+  anchorId: 153,
   /** 校验token,网络请求需要 */
-  token: "3406367992b745569e285f96fe9ce7ad",
+  token: "504c5bd37fac44949a5b58a992e4f61e",
   /** ws长连接使用 */
-  bid: "120",
+  bid: "119",
 };
 
 // api.vvzb.live 正式域名

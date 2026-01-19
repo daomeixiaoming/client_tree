@@ -198,6 +198,101 @@ export interface RecordDetails {
 
 
 /**--------------------------------------------------------中奖记录请求 start------------------------------------------------------------------ */
+export interface RewardResponse {
+    /**
+     * 中奖的礼物id
+     */
+    giftId?: number;
+    /**
+     * 礼物图标
+     */
+    giftImage?: string;
+    /**
+     * 礼物价值
+     */
+    giftPrice?: number;
+    /**
+     * 中奖的id
+     */
+    id?: number;
+    [property: string]: any;
+}
+export interface LuckyEggRecordsResponse {
+    /**
+     * 奖励列表
+     */
+    rewardList?: RewardResponse[];
+    time?: string;
+    [property: string]: any;
+}
+export interface GetRecordsRes {
+    /**
+     * 是否为空
+     */
+    emptyFlag?: boolean;
+    /**
+     * 结果集
+     */
+    list?: LuckyEggRecordsResponse[];
+    /**
+     * 其他属性对象
+     */
+    otherAttribute?: Object;
+    /**
+     * 当前页
+     */
+    pageNum?: number;
+    /**
+     * 总页数
+     */
+    pages?: number;
+    /**
+     * 每页的数量
+     */
+    pageSize?: number;
+    /**
+     * 总记录数
+     */
+    total?: number;
+}
+/**--------------------------------------------------------中奖记录请求 end------------------------------------------------------------------ */
+
+
+/**--------------------------------------------------------砸蛋请求------------------------------------------------------------------ */
+/** 砸蛋请求 */
+export interface SmashEggReq {
+    /** 蛋的类型 金 银 钻 */
+    type: number,
+    /** 点击类型 1次 5次 10次 */
+    num: number,
+    /** 房间ID */
+    roomId: number,
+}
+/**
+ * LuckyEggSmashResponse
+ */
+export interface SmashEggRes {
+    /**
+     * 奖励列表
+     */
+    rewardList?: RewardResponse[];
+    /**
+     * 总金币
+     */
+    totalMoney?: number;
+    /**
+     * 当前操作的蛋
+     */
+    type?: number;
+    /** 
+     * 点击类型 1次 5次 10次
+     */
+    num?: number
+    [property: string]: any;
+}
+/**--------------------------------------------------------砸蛋请求 end------------------------------------------------------------------ */
+
+/**--------------------------------------------------------中奖记录请求------------------------------------------------------------------ */
 /** 中奖记录请求 */
 export interface GetRecordsReq {
     /**
@@ -254,7 +349,6 @@ export interface RewardResponse {
      * 中奖的id
      */
     id?: number;
-    [property: string]: any;
 }
 export interface LuckyEggRecordsResponse {
     /**
@@ -262,7 +356,6 @@ export interface LuckyEggRecordsResponse {
      */
     rewardList?: RewardResponse[];
     time?: string;
-    [property: string]: any;
 }
 export interface GetRecordsRes {
     /**

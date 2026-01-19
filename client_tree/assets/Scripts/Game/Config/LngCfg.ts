@@ -10,10 +10,12 @@ export const Lngs = {
 
     AddBetDes: "非备战阶段",
 
+    MarqueeDes1: "恭喜",
+    MarqueeDes2: "获得",
+
     One: "个",
     GetPlayerInfoErr: "获取玩家信息失败!",
     GetAccountInfoErr: "获取钱包信息失败!",
-    GetChipCfgErr: "获取筹码配置信息失败！",
     GetRecordErr: "获取个人记录失败",
     GetResouleErr: "获取中奖结果失败",
     GodsRecord: "虚伪以待",

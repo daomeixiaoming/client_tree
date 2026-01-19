@@ -2,16 +2,14 @@ import EventMgr from "../Framework/Managers/EventMgr";
 import { ResMgrAsync } from "../Framework/Managers/ResMgrAsync";
 import SoundMgr from "../Framework/Managers/SoundMgr";
 import { EventKey } from "./Config/EventCfg";
-import { RoleList, RoleType, RoleTypeKey } from "./Config/GameConfig";
-import { ChipConfigRes, IAPPInfo } from "./Config/MsgCfg";
+import { EggCfgs, RoleList, RoleType, RoleTypeKey } from "./Config/GameConfig";
+import { IAPPInfo, SmashEggReq } from "./Config/MsgCfg";
 import { GameInfoResp, GameUserAccountInfo, IGameCfg, PlayerInfoResp } from "./Config/MsgCfgBase";
 import { NetCfg } from "./Config/NetCfg";
 import { AbNames } from "./Config/ResCfg";
 import { BetOptions } from "./Data/GameData";
 import { NativeCfg } from "./Data/NativeMgr";
 import NetHttpMgr from "./Data/NetHttpMgr";
-import NetWsMgr from "./Data/NetWsMgr";
-import UIViewMgr from "./Data/UIViewMgr";
 
 const { ccclass, property } = cc._decorator;
 
@@ -53,8 +51,6 @@ export default class GameLogic extends cc.Component {
 
     public static Instance: GameLogic = null as unknown as GameLogic;
 
-    /** 筹码配置 */
-    public chipCfg: ChipConfigRes[] = []
     /** 游戏配置数据 */
     gameCfg: IGameCfg = null;
 
@@ -62,6 +58,7 @@ export default class GameLogic extends cc.Component {
     msg106Last: boolean = false;
     /** 标记是否开启封神榜，默认是false */
     isOpenUserRebate: boolean = true;
+    choiceEgg: number;
 
 
     onLoad(): void {
@@ -95,12 +92,7 @@ export default class GameLogic extends cc.Component {
         EventMgr.Instance.AddEventListener(EventKey.Http_Res_GetPlayerInfo, this, this.onGetPlayerInfoRes);
         EventMgr.Instance.AddEventListener(EventKey.Http_Res_GetAccountInfo, this, this.onGetAccountInfo);
         EventMgr.Instance.AddEventListener(EventKey.Http_Msg_ShopBuyRes, this, this.onShopBuyRes);
-        EventMgr.Instance.AddEventListener(EventKey.Http_Res_GetResultList, this, this.onResultsListRes);
-        EventMgr.Instance.AddEventListener(EventKey.Http_Res_GetChipCfg, this, this.onChipCfgRes);
         EventMgr.Instance.AddEventListener(EventKey.Http_Res_GetGameCfg, this, this.onHttpGameCfgRes);
-        EventMgr.Instance.AddEventListener(EventKey.Http_Res_UserRebateConfig, this, this.onHttpUserRebateConfigRes);
-
-
     }
 
     private unRegisterEvent(): void {
@@ -108,11 +100,7 @@ export default class GameLogic extends cc.Component {
         EventMgr.Instance.RemoveListenner(EventKey.Http_Res_GetPlayerInfo, this, this.onGetPlayerInfoRes);
         EventMgr.Instance.RemoveListenner(EventKey.Http_Res_GetAccountInfo, this, this.onGetAccountInfo);
         EventMgr.Instance.RemoveListenner(EventKey.Http_Msg_ShopBuyRes, this, this.onShopBuyRes);
-        EventMgr.Instance.RemoveListenner(EventKey.Http_Res_GetResultList, this, this.onResultsListRes);
-        EventMgr.Instance.RemoveListenner(EventKey.Http_Res_GetChipCfg, this, this.onChipCfgRes);
         EventMgr.Instance.RemoveListenner(EventKey.Http_Res_GetGameCfg, this, this.onHttpGameCfgRes);
-        EventMgr.Instance.RemoveListenner(EventKey.Http_Res_UserRebateConfig, this, this.onHttpUserRebateConfigRes);
-
     }
 
     /**
@@ -186,24 +174,23 @@ export default class GameLogic extends cc.Component {
     /**
      * 点击下注
      */
-    public sendAddBet(roleId: number) {
-        let opationId = this.optIdx;
-        console.log("===========GameLogic。sendAddBet=============", this.gameDataInfo);
-        // 判断龙币是否足够
-        let num = this.gameDataInfo.num;
-        // num = 0; //测试
-        if (this.chipCfg.length > 0) {
-            let cfg = this.chipCfg.find(item => item.optionId === opationId);
-            // console.log("===========GameLogic。sendAddBet1=============", num, cfg);
-            if (cfg && num > cfg.chip) {
-                NetWsMgr.Instance.addBetReq(roleId, opationId);
-            } else {
-                // 龙币不足，跳转界面
-                UIViewMgr.Instance.showNan();
-            }
-        } else {
-            console.error("chipCfg error");
+    public sendAddBet(type: number) {
+        let cfg = EggCfgs.find(item => item.eggType === this.choiceEgg);
+        // let cost = type * cfg.numBet;
+        console.log("===========onAddBet===========", type);
+        // if (cost <= this.currency) {
+        let req: SmashEggReq = {
+            type: 1,
+            num: type,
+            roomId: GameLogic.Instance.roomId,
         }
+        // console.log("============GameLogic.onAddBet============", req);
+        NetHttpMgr.Instance.SmashEggReq(req);
+        // } else {
+        //     console.log("=======金币不足========");
+        //     GameApp.Instance.showCoinNan();
+        //     EventMgr.Instance.Emit(EventKey.UI_RESETALLEGG, "");
+        // }
     }
 
     // 更新金币和破魔石
@@ -261,32 +248,6 @@ export default class GameLogic extends cc.Component {
     }
 
     /**
-     * 中奖结果
-     * @param uanme 
-     * @param udata 
-     */
-    private onResultsListRes(uanme: string, udata: number[]) {
-        if (udata) {
-            this.homeRecords = [].concat(udata);
-            console.log("==========onResultsListRes=============", this.homeRecords);
-            EventMgr.Instance.Emit(EventKey.UI_INIT_HOME_RECORD, "");
-        }
-    }
-
-    /**
-     *  筹码配置
-     * @param uname 
-     * @param udata 
-     */
-    private onChipCfgRes(uname: string, udata: ChipConfigRes[]): void {
-        if (udata) {
-            console.log("==========onChipCfgRes=============", udata);
-            // 记录下筹码配置
-            this.chipCfg = [].concat(udata);
-        }
-    }
-
-    /**
   * 游戏配置
   * @param uname 
   * @param udata 
@@ -294,19 +255,6 @@ export default class GameLogic extends cc.Component {
     private onHttpGameCfgRes(uname: string, udata: IGameCfg) {
         if (udata) {
             this.gameCfg = udata;
-        }
-    }
-
-    /**
-     * 封神榜配置返回
-     * @param uname 
-     * @param udata 
-     */
-    private onHttpUserRebateConfigRes(uname: string, udata: boolean) {
-        console.log("=================GameLogic.onHttpUserRebateConfigRes====================", udata);
-        if (udata) {
-            this.isOpenUserRebate = udata;
-            EventMgr.Instance.Emit(EventKey.UI_UserRebateCfg, "");
         }
     }
 

@@ -12,14 +12,14 @@ export const ResPkg_First = {
         {
             assetType: cc.Prefab,
             urls: [
-                UICfg.Home, UICfg.HomeChip, UICfg.HomeMenu
+                UICfg.Home, UICfg.HomeChip, UICfg.HomeMenu, UICfg.Agree, UICfg.Notice, UICfg.Marquee
             ],
         },
     ],
     Guis: [
         {
             assetType: cc.SpriteFrame,
-            urls: [GuiCfg.bg_nan, GuiCfg.bg_home],
+            urls: [GuiCfg.bg_nan, GuiCfg.bg_home, GuiCfg.bg_notice],
         },
     ],
 };
@@ -52,14 +52,6 @@ export const ResPkg_Second = {
             ]
         }
     ],
-    // Sounds: [
-    //     {
-    //         assetType: cc.AudioClip,
-    //         urls: [
-
-    //         ]
-    //     }
-    // ],
 };
 
 //-----------------------------------

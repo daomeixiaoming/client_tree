@@ -85,7 +85,6 @@ export default class GameApp extends cc.Component {
         EventMgr.Instance.AddEventListener(EventKey.Native_UserInfo, this, this.onNativeUserInfo);
         EventMgr.Instance.AddEventListener(NetMsg.NetConnect, this, this.onNetConnect);
         EventMgr.Instance.AddEventListener(NetMsg.NetDisconnect, this, this.onNetDisconnect);
-
         // 获取原生app数据 end
         EventMgr.Instance.AddEventListener(EventKey.UI_GotoLogin, this, this.onUIEventGotoLogin);
         EventMgr.Instance.AddEventListener(EventKey.Http_Res_GetGameCfg, this, this.onHttpGameCfgRes);
@@ -163,12 +162,8 @@ export default class GameApp extends cc.Component {
         NetHttpMgr.Instance.GetAccountInfo();
         // 获取免打扰策略
         NetHttpMgr.Instance.GetGameInfo();
-        // 请求筹码配置
-        NetHttpMgr.Instance.GetChipCfg();
-        // 获取封神榜配置
-        NetHttpMgr.Instance.GetUserRebateConfig();
         // 链接网路
-        // NetWsMgr.Instance.connectNet();
+        NetWsMgr.Instance.connectNet();
     }
 
     private goToHome() {
@@ -206,9 +201,6 @@ export default class GameApp extends cc.Component {
     private onNetConnect(uname: string, udata: any) {
         console.log("==============GameApp.onNetConnect===========");
         this.enterCfg.isConnectWs = true;
-
-        // 请求加入房间
-        NetWsMgr.Instance.joinRoomReq(GameLogic.Instance.roomId, GameLogic.Instance.anchorId);
     }
     // 网络断开
     private onNetDisconnect(uanme: string, udata: any) {

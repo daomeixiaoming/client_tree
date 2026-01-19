@@ -1,6 +1,8 @@
 import EventMgr from "../../Framework/Managers/EventMgr";
 import { NetMgr, NetMsg } from "../../Framework/Managers/Net/NetMgr";
 import CocosUtils from "../../Framework/Utils/CocosUtils";
+import { client } from "../../Proto/game_pb";
+import { EventKey } from "../Config/EventCfg";
 import { NetCfg } from "../Config/NetCfg";
 
 const { ccclass, property } = cc._decorator;
@@ -35,55 +37,13 @@ export default class NetWsMgr extends cc.Component {
 
     /** 初始化网络 */
     public connectNet() {
-        let url = NetCfg.wss + `?Authorization=${NetCfg.token}&bid=${NetCfg.bid}`;
+        let url = NetCfg.wss + `?Authorization=${NetCfg.token}&bid=lucky-egg`;
         NetMgr.Instance.Init(url);
     }
 
-    /**
-     * 加入房间请求
-     * @param _roomId 
-     * @param _anchorId 
-     */
-    public joinRoomReq(_roomId: number, _anchorId: number) {
-        // console.log("================joinRoomReq================", _roomId, _anchorId);
-        // let msg = client.sea_game.JoinRoomRequest.create({
-        //     roomId: _roomId,
-        //     anchorId: _anchorId,
-        // })
-        // let req = client.sea_game.Request.create({
-        //     cmd: client.sea_game.RequestCode.SEA_GAME_JOIN_ROOM_REQUEST,
-        //     body: {
-        //         seaGameJoinRoom: msg
-        //     }
-        // });
-
-        // let buf = client.sea_game.Request.encode(req).finish();
-        // NetMgr.Instance.send_data(buf);
-    }
-
-    /**
-     * 下注请求
-     * @param _itemId  角色id 1- 8
-     * @param _optionId 筹码id 1- 5
-     */
-    public addBetReq(_itemId: number, _optionId: number) {
-        // console.log("-------------NetWsMgr.addBetReq-----------------------------", _itemId, _optionId);
-        // let msg = client.sea_game.BetRequest.create({
-        //     itemId: _itemId,
-        //     optionId: _optionId,
-        // })
-        // let req = client.sea_game.Request.create({
-        //     cmd: client.sea_game.RequestCode.SEA_GAME_BET_REQUEST,
-        //     body: {
-        //         seaGameBet: msg
-        //     }
-        // });
-        // let buf = client.sea_game.Request.encode(req).finish();
-        // NetMgr.Instance.send_data(buf);
-    }
 
     private onWsEventConnect(uanme: string, udata: any) {
-        // CocosUtils.showToast("网络连接成功！", 0);
+        CocosUtils.showToast("网络连接成功！", 0);
     }
 
     private onWsEventDisConnect(uanme: string, udata: any) {
@@ -95,23 +55,30 @@ export default class NetWsMgr extends cc.Component {
      * @param udata 
      */
     private onWsEventMsg(uname: string, udata: ArrayBuffer): void {
-        // DebugUtils.Log("===========onWsEventMsg=========", udata);
         const uint8Array = new Uint8Array(udata);
-        // let buf = client.sea_game.Response.decode(uint8Array);
-        // if (buf) {
-        //     let ctype = buf.cmd;
-        //     let body = buf.body;
-        //     console.log("========NetWsMgr onWsEventMsg==========", ctype);
-        //     switch (ctype) {
-        //         // case client.sea_game.ResponseCode.ERROR:
-        //         //     this.onErrorMsg(body);
-        //         //     break;
-        //         default:
-        //             let msg = body.error.msg;
-        //             console.log("=======body===============", msg);
-        //             CocosUtils.showToast(msg, 2);
-        //             break;
-        //     }
-        // }
+        let buf = client.lucky_egg.Response.decode(uint8Array);
+        console.log("===========NetWsMgr.onWsEventMsg=========", udata);
+        if (buf) {
+            let ctype = buf.cmd;
+            let body = buf.body;
+            // DebugUtils.Log("========NetWsMgr onWsEventMsg==========", ctype);
+            switch (ctype) {
+                case client.lucky_egg.ResponseCode.LUCKY_EGG_REWARD: //跑马灯
+                    this.onMarqueeInfo(body);
+                    break;
+            }
+        }
+    }
+
+    // 跑马灯数据
+    private onMarqueeInfo(data: client.lucky_egg.IResponseBody) {
+        console.log("==============onMarqueeInfo============", data);
+        if (data && data.rewardInfo) {
+            const rewardInfo = data.rewardInfo;
+            // MarqueeMgr.Instance.addNewData(rewardInfo);
+            EventMgr.Instance.Emit(EventKey.MSG_NEW_MARQUEE, rewardInfo);
+        }
+        // 实时更新Boss数据
+        // EventMgr.Instance.Emit(EventKey.WS_UpdateBoss, data);
     }
 }

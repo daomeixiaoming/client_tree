@@ -1,5 +1,6 @@
 // import { NetCfg } from "../../../Game/Config/GameConfig";
 // import { client } from "../../../Proto/game_pb";
+import { client } from "../../../Proto/game_pb";
 import DebugUtils from "../../Utils/DebugUtils";
 import EventMgr from "../EventMgr";
 
@@ -102,17 +103,17 @@ export class NetMgr extends cc.Component {
   // 收到消息
   private _on_recv_data(event: any) {
     const uint8Array = new Uint8Array(event.data);
-    // let buf = client.sea_game.Response.decode(uint8Array);
-    // console.warn("==========_on_recv_data=============", buf);
-    // if (buf) {
-    //   let ctype = buf.cmd;
-    //   if (ctype === client.sea_game.ResponseCode.PONG) {
-    //     //收到心跳
-    //     this.resetTimeout();
-    //   } else {
-    //     EventMgr.Instance.Emit(NetMsg.NetMessage, event.data);
-    //   }
-    // }
+    let buf = client.lucky_egg.Response.decode(uint8Array);
+    console.warn("==========_on_recv_data=============", buf);
+    if (buf) {
+      let ctype = buf.cmd;
+      if (ctype === client.lucky_egg.ResponseCode.PONG) {
+        //收到心跳
+        this.resetTimeout();
+      } else {
+        EventMgr.Instance.Emit(NetMsg.NetMessage, event.data);
+      }
+    }
   }
 
   //收到心跳回复

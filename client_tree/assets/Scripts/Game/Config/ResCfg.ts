@@ -20,8 +20,8 @@ export const AbNames = {
 export const AtalsCfg = {
     Common: "First/Common",
     Home: "First/Home",
+    Notice: "First/Notice",
     Nan: "Second/Nan",
-    Notice: "Second/Notice",
     Record: "Second/Record",
 };
 
@@ -34,13 +34,13 @@ export const UICfg = {
     /** 大厅 */
     HomeChip: "First/HomeChip",
     HomeMenu: "First/HomeMenu",
+    /**免打扰 */
+    Agree: "First/Agree",
+    Notice: "First/Notice",
+    Marquee: "First/Marquee",
 
     /** 提示条弹框 */
     Toast: "Second/Common/Toast",
-
-    /**免打扰 */
-    Agree: "Second/Notice/Agree",
-    Notice: "Second/Notice/Notice",
 
     /** 帮助规则 */
     Help: "Second/Help",
@@ -51,7 +51,6 @@ export const UICfg = {
     RecordGift: "Second/Record/RecordGift",
     RecordItem1: "Second/Record/RecordItem1",
     RecordItem2: "Second/Record/RecordItem2",
-
 
 };
 

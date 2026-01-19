@@ -2,9 +2,10 @@ import EventMgr from "../../../Framework/Managers/EventMgr";
 import { ResMgr } from "../../../Framework/Managers/ResMgr";
 import UIBase from "../../../Framework/Managers/UIBase";
 import { EventKey } from "../../Config/EventCfg";
-import { GetRecordsRes, LuckyEggRecordsResponse } from "../../Config/MsgCfg";
+import { GetRecordsReq, GetRecordsRes, LuckyEggRecordsResponse } from "../../Config/MsgCfg";
 import { AbNames, UICfg } from "../../Config/ResCfg";
 import { GameData } from "../../Data/GameTest";
+import NetHttpMgr from "../../Data/NetHttpMgr";
 import RecordItem1_Ctrl from "./RecordItem1_Ctrl";
 import RecordItem2_Ctrl from "./RecordItem2_Ctrl";
 
@@ -25,8 +26,10 @@ export default class Record_Ctrl extends UIBase {
     }
 
     start() {
-        let data = GameData.record.data as GetRecordsRes;
-        this.onGetRecordListRes("", data);
+        // let data = GameData.record.data as GetRecordsRes;
+        // this.onGetRecordListRes("", data);
+
+        this.getListData();
     }
 
     protected onDestroy(): void {
@@ -43,15 +46,24 @@ export default class Record_Ctrl extends UIBase {
     }
 
     private registerEvent() {
-        EventMgr.Instance.AddEventListener(EventKey.MSG_GETRECORD_LIST, this, this.onGetRecordListRes);
+        EventMgr.Instance.AddEventListener(EventKey.Http_Res_GetRecordList, this, this.onGetRecordListRes);
     }
 
     private unRegisterEvent() {
-        EventMgr.Instance.RemoveListenner(EventKey.MSG_GETRECORD_LIST, this, this.onGetRecordListRes);
+        EventMgr.Instance.RemoveListenner(EventKey.Http_Res_GetRecordList, this, this.onGetRecordListRes);
     }
 
     private setNanStatus(active: boolean) {
         this.nanBg.active = active;
+    }
+
+    // 请求数据
+    private getListData() {
+        let req: GetRecordsReq = {
+            pageNo: this.startPage,
+            pageSize: 10
+        }
+        NetHttpMgr.Instance.GetRecordListReq(req);
     }
 
     /**

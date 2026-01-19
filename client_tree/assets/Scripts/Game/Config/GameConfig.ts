@@ -131,3 +131,38 @@ export const RoleList: RoleTypeKey[] = [
     rate: 5,
   },
 ];
+
+
+/** 蛋的类型 
+ * 1-银蛋，2-金蛋，3-钻石蛋
+*/
+export enum EggType {
+  /** 银弹 */
+  EggSilver = 1,
+  /** 金蛋 */
+  EggGold = 2,
+  /** 钻石 */
+  EggDrill = 3,
+}
+
+export interface EggCfg {
+  /** 蛋的类型 */
+  eggType: number,
+  /** 当前蛋的价值 */
+  numBet: number,
+}
+
+/** 蛋的资源配置 */
+export const EggCfgs: EggCfg[] = [
+  {
+    eggType: EggType.EggGold,
+    numBet: 0,
+  },
+  {
+    eggType: EggType.EggDrill,
+    numBet: 0,
+  }, {
+    eggType: EggType.EggSilver,
+    numBet: 0,
+  }
+]

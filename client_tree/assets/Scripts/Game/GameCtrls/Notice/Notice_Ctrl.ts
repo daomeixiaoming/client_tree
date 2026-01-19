@@ -36,8 +36,8 @@ export default class Notice_Ctrl extends UIBase {
     }
 
     private initUI(): void {
-        let spBg = this.ViewComponent("node/bg", cc.Sprite) as cc.Sprite;
-        GameUtils.SetSpByAtals(spBg, GuiCfg.bg_help);
+        // let spBg = this.ViewComponent("node/bg", cc.Sprite) as cc.Sprite;
+        // GameUtils.SetSpByAtals(spBg, GuiCfg.bg_help);
 
         this.agreeTog = this.ViewComponent("node/bg/sp_bg/tog1", cc.Toggle) as cc.Toggle;
         this.todayTog = this.ViewComponent("node/bg/sp_bg/tog2", cc.Toggle) as cc.Toggle;

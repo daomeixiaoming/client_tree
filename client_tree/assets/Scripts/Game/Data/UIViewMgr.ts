@@ -130,20 +130,23 @@ export default class UIViewMgr extends cc.Component {
      * @param type 1 notice通知页 2 玩法公约页
      */
     public showNotice(type: number = 1) {
-        if (this.isLoadNotice) {
-            DebugUtils.Log("===========UIViewMgr.showNotice2=================");
-            let path = type === 1 ? UICfg.Notice : UICfg.Agree;
-            UIMgr.Instance.ShowUIView(path, AbNames.Prefabs, UILayer.UI_Layer2);
-        } else {
-            ResMgr.Instance.preloadResPkg(ResPkg_Nocice, (now: any, total: any) => { },
-                () => {
-                    DebugUtils.Log("===========UIViewMgr.showNotice2=================");
-                    this.isLoadNotice = true;
-                    let path = type === 1 ? UICfg.Notice : UICfg.Agree;
-                    UIMgr.Instance.ShowUIView(path, AbNames.Prefabs, UILayer.UI_Layer2);
-                }
-            );
-        }
+        // if (this.isLoadNotice) {
+        //     DebugUtils.Log("===========UIViewMgr.showNotice2=================");
+        //     let path = type === 1 ? UICfg.Notice : UICfg.Agree;
+        //     UIMgr.Instance.ShowUIView(path, AbNames.Prefabs, UILayer.UI_Layer2);
+        // } else {
+        //     ResMgr.Instance.preloadResPkg(ResPkg_Nocice, (now: any, total: any) => { },
+        //         () => {
+        //             DebugUtils.Log("===========UIViewMgr.showNotice2=================");
+        //             this.isLoadNotice = true;
+        //             let path = type === 1 ? UICfg.Notice : UICfg.Agree;
+        //             UIMgr.Instance.ShowUIView(path, AbNames.Prefabs, UILayer.UI_Layer2);
+        //         }
+        //     );
+        // }
+
+        let path = type === 1 ? UICfg.Notice : UICfg.Agree;
+        UIMgr.Instance.ShowUIView(path, AbNames.Prefabs, UILayer.UI_Layer2);
     }
 
     /** 展示历史记录 ok */

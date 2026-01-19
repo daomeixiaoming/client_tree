@@ -4,10 +4,36 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>homeCoin.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{458,219},{36,36}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{36,36}}</string>
+                <key>sourceSize</key>
+                <string>{36,36}</string>
+            </dict>
+            <key>homeScoreBg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,219},{282,52}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{282,52}}</string>
+                <key>sourceSize</key>
+                <string>{284,52}</string>
+            </dict>
             <key>home_addbetbtn.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,219},{160,72}}</string>
+                <string>{{110,273},{160,72}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -20,7 +46,7 @@
             <key>home_addbettxt1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{444,219},{81,31}}</string>
+                <string>{{429,293},{81,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +59,7 @@
             <key>home_addbettxt10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{110,319},{102,31}}</string>
+                <string>{{305,260},{102,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,11 +72,11 @@
             <key>home_addbettxt20.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,319},{106,31}}</string>
+                <string>{{272,273},{106,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{106,31}}</string>
                 <key>sourceSize</key>
@@ -59,7 +85,7 @@
             <key>home_addbettxt5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{214,319},{85,31}}</string>
+                <string>{{409,260},{85,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +98,7 @@
             <key>home_btnmore.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{226,257},{60,60}}</string>
+                <string>{{367,293},{60,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,11 +111,11 @@
             <key>home_chipLight.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{288,257},{26,28}}</string>
+                <string>{{466,134},{26,28}}</string>
                 <key>offset</key>
                 <string>{-1,1}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{2,1},{26,28}}</string>
                 <key>sourceSize</key>
@@ -98,7 +124,7 @@
             <key>home_chipbg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{336,219},{106,106}}</string>
+                <string>{{2,273},{106,106}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +137,7 @@
             <key>home_chiptxtbg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{164,219},{170,36}}</string>
+                <string>{{286,219},{170,36}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +150,7 @@
             <key>home_menu9bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{164,257},{60,60}}</string>
+                <string>{{305,293},{60,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +163,7 @@
             <key>home_menuBtn1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,293},{126,24}}</string>
+                <string>{{110,347},{126,24}}</string>
                 <key>offset</key>
                 <string>{2,0}</string>
                 <key>rotated</key>
@@ -163,7 +189,7 @@
             <key>home_menuLine.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{301,327},{138,1}}</string>
+                <string>{{286,257},{138,1}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -207,9 +233,9 @@
             <key>realTextureFileName</key>
             <string>Home.png</string>
             <key>size</key>
-            <string>{492,352}</string>
+            <string>{496,381}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:d72b333c85f075c70fbcedd913530a3d$</string>
+            <string>$TexturePacker:SmartUpdate:0a17ee474a293fac08527f52789db74a$</string>
             <key>textureFileName</key>
             <string>Home.png</string>
         </dict>

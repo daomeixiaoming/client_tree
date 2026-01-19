@@ -1,5 +1,6 @@
 import UIBase from "../../../Framework/Managers/UIBase";
 import CocosUtils from "../../../Framework/Utils/CocosUtils";
+import { RewardResponse } from "../../Config/MsgCfg";
 
 const { ccclass, property } = cc._decorator;
 /**
@@ -12,10 +13,15 @@ export default class HomeChip_Ctrl extends UIBase {
     onLoad() {
         super.onLoad();
         this.initUI();
+        this.node.on("initChip", this.setData, this);
     }
 
     start() {
 
+    }
+
+    protected onDestroy(): void {
+        this.node.off("initChip", this.setData, this);
     }
 
     private initUI() {
@@ -42,13 +48,14 @@ export default class HomeChip_Ctrl extends UIBase {
         }
     }
 
-    public setData(data: { price: number, icon: string }) {
+    public setData(data: RewardResponse) {
+        // console.log("=================HomeChip_Ctrl.setData================", data);
         if (data) {
-            if (data.icon) {
-                this.setIcon(data.icon);
+            if (data.giftImage) {
+                this.setIcon(data.giftImage);
             }
-            if (data.price) {
-                this.setPrice(data.price);
+            if (data.giftPrice) {
+                this.setPrice(data.giftPrice);
             }
         }
     }
