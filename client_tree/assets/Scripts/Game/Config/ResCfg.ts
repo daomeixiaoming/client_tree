@@ -31,6 +31,9 @@ export const UICfg = {
     /** 起步必须加载的 */
     Home: "First/Home",
     Loading: "First/Loading",
+    /** 大厅 */
+    HomeChip: "First/HomeChip",
+    HomeMenu: "First/HomeMenu",
 
     /** 提示条弹框 */
     Toast: "Second/Common/Toast",
@@ -49,9 +52,7 @@ export const UICfg = {
     RecordItem1: "Second/Record/RecordItem1",
     RecordItem2: "Second/Record/RecordItem2",
 
-    /** 大厅 */
-    HomeChip: "Second/Home/HomeChip",
-    HomeMenu: "Second/Home/HomeMenu",
+
 };
 
 // spine动画资源

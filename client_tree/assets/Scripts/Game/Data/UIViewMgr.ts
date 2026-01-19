@@ -91,18 +91,19 @@ export default class UIViewMgr extends cc.Component {
      * 展示菜单页 ok1
      */
     public showMenu() {
-        if (this.isLoadMenu) {
-            DebugUtils.Log("===========UIViewMgr.showMenu2=================");
-            UIMgr.Instance.ShowUIView(UICfg.HomeMenu, AbNames.Prefabs, UILayer.UI_Layer2);
-        } else {
-            ResMgr.Instance.preloadResPkg(ResPkg_Menu, (now: any, total: any) => { },
-                () => {
-                    this.isLoadMenu = true;
-                    DebugUtils.Log("===========UIViewMgr.showMenu=================");
-                    UIMgr.Instance.ShowUIView(UICfg.HomeMenu, AbNames.Prefabs, UILayer.UI_Layer2);
-                }
-            );
-        }
+        UIMgr.Instance.ShowUIView(UICfg.HomeMenu, AbNames.Prefabs, UILayer.UI_Layer2);
+        // if (this.isLoadMenu) {
+        //     DebugUtils.Log("===========UIViewMgr.showMenu2=================");
+        //     UIMgr.Instance.ShowUIView(UICfg.HomeMenu, AbNames.Prefabs, UILayer.UI_Layer2);
+        // } else {
+        //     ResMgr.Instance.preloadResPkg(ResPkg_Menu, (now: any, total: any) => { },
+        //         () => {
+        //             this.isLoadMenu = true;
+        //             DebugUtils.Log("===========UIViewMgr.showMenu=================");
+        //             UIMgr.Instance.ShowUIView(UICfg.HomeMenu, AbNames.Prefabs, UILayer.UI_Layer2);
+        //         }
+        //     );
+        // }
     }
 
     /**

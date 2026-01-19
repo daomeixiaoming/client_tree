@@ -18,11 +18,11 @@ export const NetCfg = {
   /** 主播id */
   anchorId: 10001397,
   /** 校验token,网络请求需要 */
-  token: "5f14037098b54a6991cf6948312762f0",
+  token: "3406367992b745569e285f96fe9ce7ad",
   /** ws长连接使用 */
   bid: "120",
 };
 
 // api.vvzb.live 正式域名
-// 5f14037098b54a6991cf6948312762f0 15623252003  "userNum": 10009324,
+// 3406367992b745569e285f96fe9ce7ad 15623252003  "userNum": 10009324,
 // 80bf8efa03594ec6afac0e99e3a49254 15623252004  "userNum": 10002546,
