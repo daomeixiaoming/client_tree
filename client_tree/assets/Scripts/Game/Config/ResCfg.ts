@@ -56,7 +56,7 @@ export const UICfg = {
 
 // spine动画资源
 export const SpineCfg = {
-    sp_yao: "sp_yao/sp_yao",
+    sp_tree: "sp_tree/sp_tree",
 };
 
 /** 声音资源 */

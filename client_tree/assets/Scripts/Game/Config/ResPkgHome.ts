@@ -46,7 +46,7 @@ export const ResPkg_Second = {
         {
             assetType: sp.SkeletonData,
             urls: [
-                SpineCfg.sp_yao,
+                SpineCfg.sp_tree,
             ]
         }
     ],

@@ -100,7 +100,7 @@ export default class Home_Ctrl extends UIBase {
      * 初始化动画
      */
     private initAni() {
-        ResMgrAsync.Instance.IE_GetAsset(AbNames.Spines, SpineCfg.sp_yao, sp.SkeletonData).then((res: sp.SkeletonData) => {
+        ResMgrAsync.Instance.IE_GetAsset(AbNames.Spines, SpineCfg.sp_tree, sp.SkeletonData).then((res: sp.SkeletonData) => {
             if (res) {
                 this.spAni.skeletonData = res;
                 this.spAni.loop = false;

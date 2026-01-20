@@ -285,6 +285,7 @@ export default class GameLogic extends cc.Component {
             EventMgr.Instance.Emit(EventKey.UI_MSG_SMASHEGGRES, udata);
         } else {
             console.error("==============GameLogic.onAddBetRes.error==========");
+            EventMgr.Instance.Emit(EventKey.UI_RESETGAME, "");
         }
     }
 
