@@ -3,13 +3,14 @@ import { ResMgrAsync } from "../Framework/Managers/ResMgrAsync";
 import SoundMgr from "../Framework/Managers/SoundMgr";
 import { EventKey } from "./Config/EventCfg";
 import { EggCfgs, RoleList, RoleType, RoleTypeKey } from "./Config/GameConfig";
-import { IAPPInfo, SmashEggReq } from "./Config/MsgCfg";
+import { IAPPInfo, SmashCfgItem, SmashEggReq, SmashEggRes } from "./Config/MsgCfg";
 import { GameInfoResp, GameUserAccountInfo, IGameCfg, PlayerInfoResp } from "./Config/MsgCfgBase";
 import { NetCfg } from "./Config/NetCfg";
 import { AbNames } from "./Config/ResCfg";
 import { BetOptions } from "./Data/GameData";
 import { NativeCfg } from "./Data/NativeMgr";
 import NetHttpMgr from "./Data/NetHttpMgr";
+import GameApp from "./GameApp";
 
 const { ccclass, property } = cc._decorator;
 
@@ -59,6 +60,8 @@ export default class GameLogic extends cc.Component {
     /** 标记是否开启封神榜，默认是false */
     isOpenUserRebate: boolean = true;
     choiceEgg: number;
+    /** 游戏的筹码配置 */
+    gameCfgs: SmashCfgItem[] = [];
 
 
     onLoad(): void {
@@ -93,6 +96,8 @@ export default class GameLogic extends cc.Component {
         EventMgr.Instance.AddEventListener(EventKey.Http_Res_GetAccountInfo, this, this.onGetAccountInfo);
         EventMgr.Instance.AddEventListener(EventKey.Http_Msg_ShopBuyRes, this, this.onShopBuyRes);
         EventMgr.Instance.AddEventListener(EventKey.Http_Res_GetGameCfg, this, this.onHttpGameCfgRes);
+        EventMgr.Instance.AddEventListener(EventKey.MSG_SMASHEGGRES, this, this.onAddBetRes);
+        EventMgr.Instance.AddEventListener(EventKey.MSG_SMASHECFG, this, this.onGameCfgRes);
     }
 
     private unRegisterEvent(): void {
@@ -101,6 +106,8 @@ export default class GameLogic extends cc.Component {
         EventMgr.Instance.RemoveListenner(EventKey.Http_Res_GetAccountInfo, this, this.onGetAccountInfo);
         EventMgr.Instance.RemoveListenner(EventKey.Http_Msg_ShopBuyRes, this, this.onShopBuyRes);
         EventMgr.Instance.RemoveListenner(EventKey.Http_Res_GetGameCfg, this, this.onHttpGameCfgRes);
+        EventMgr.Instance.RemoveListenner(EventKey.MSG_SMASHEGGRES, this, this.onAddBetRes);
+        EventMgr.Instance.RemoveListenner(EventKey.MSG_SMASHECFG, this, this.onGameCfgRes);
     }
 
     /**
@@ -112,6 +119,13 @@ export default class GameLogic extends cc.Component {
         //     this.atalsHome2 = res;
         //     callback(res);
         // });
+    }
+
+    /**
+     * 获取App的货币瞄钻
+     */
+    public getAppScore() {
+        return this.appDataInfo.diamondBalance;
     }
 
     /**
@@ -175,22 +189,21 @@ export default class GameLogic extends cc.Component {
      * 点击下注
      */
     public sendAddBet(type: number) {
-        let cfg = EggCfgs.find(item => item.eggType === this.choiceEgg);
-        // let cost = type * cfg.numBet;
-        console.log("===========onAddBet===========", type);
-        // if (cost <= this.currency) {
-        let req: SmashEggReq = {
-            type: 1,
-            num: type,
-            roomId: GameLogic.Instance.roomId,
+        let cfg = this.gameCfgs.find(item => item.type === 1);
+        let cost = type * cfg.cost;
+        console.log("===========onAddBet===========", cost);
+        if (cost <= this.getAppScore()) {
+            let req: SmashEggReq = {
+                type: 1,
+                num: type,
+                roomId: GameLogic.Instance.roomId,
+            }
+            NetHttpMgr.Instance.SmashEggReq(req);
+        } else {
+            //     console.log("=======金币不足========");
+            GameApp.Instance.showCoinNan();
+            EventMgr.Instance.Emit(EventKey.UI_RESETGAME, "");
         }
-        // console.log("============GameLogic.onAddBet============", req);
-        NetHttpMgr.Instance.SmashEggReq(req);
-        // } else {
-        //     console.log("=======金币不足========");
-        //     GameApp.Instance.showCoinNan();
-        //     EventMgr.Instance.Emit(EventKey.UI_RESETALLEGG, "");
-        // }
     }
 
     // 更新金币和破魔石
@@ -255,6 +268,36 @@ export default class GameLogic extends cc.Component {
     private onHttpGameCfgRes(uname: string, udata: IGameCfg) {
         if (udata) {
             this.gameCfg = udata;
+        }
+    }
+
+    /**
+     * 下注返回
+     * @param uname 
+     * @param udata 
+     */
+    private onAddBetRes(uname: string, udata: SmashEggRes) {
+        if (udata) {
+            let totalMoney = udata.totalMoney;
+            if (totalMoney) {
+                this.appDataInfo.diamondBalance = totalMoney;
+            }
+            EventMgr.Instance.Emit(EventKey.UI_MSG_SMASHEGGRES, udata);
+        } else {
+            console.error("==============GameLogic.onAddBetRes.error==========");
+        }
+    }
+
+    /**
+     * 游戏的配置
+     * @param uname 
+     * @param udata 
+     */
+    private onGameCfgRes(uname: string, udata: SmashCfgItem[]) {
+        if (udata) {
+            this.gameCfgs = [].concat(udata);
+        } else {
+            console.error("==============GameLogic.onGameCfgRes.error==========");
         }
     }
 

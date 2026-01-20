@@ -7,6 +7,7 @@ import RandomUtils from "../../../Framework/Utils/RandomUtils";
 import { EventKey } from "../../Config/EventCfg";
 import { RewardResponse, SmashEggRes } from "../../Config/MsgCfg";
 import { AbNames, SpineCfg, UICfg } from "../../Config/ResCfg";
+import NetHttpMgr from "../../Data/NetHttpMgr";
 import UIViewMgr from "../../Data/UIViewMgr";
 import GameApp from "../../GameApp";
 import GameLogic from "../../GameLogic";
@@ -29,6 +30,7 @@ export default class Home_Ctrl extends UIBase {
     chioiceType: number = 1;
     listlength: number;
     spPMD: cc.Node;
+    labScore: cc.Label;
 
     onLoad() {
         super.onLoad();
@@ -68,6 +70,10 @@ export default class Home_Ctrl extends UIBase {
         this.spPMD = this.view["node/bg/spPMD"] as cc.Node;
         this.initPMD();
 
+        // 分数
+        this.labScore = this.ViewComponent("node/bg/spScoreBg/layout/lab", cc.Label) as cc.Label;
+        this.updateScore();
+
         //加载节点池
         NodePoolMgr.Instance.AddNodePool(AbNames.Prefabs, UICfg.HomeChip, 20);
 
@@ -79,10 +85,15 @@ export default class Home_Ctrl extends UIBase {
     }
 
     private registerEvent() {
-        EventMgr.Instance.AddEventListener(EventKey.MSG_SMASHEGGRES, this, this.onAddBetRes);
+        EventMgr.Instance.AddEventListener(EventKey.UI_MSG_SMASHEGGRES, this, this.onAddBetRes);
+        EventMgr.Instance.AddEventListener(EventKey.Update_Currency, this, this.onUpdateScore);
+        EventMgr.Instance.AddEventListener(EventKey.UI_RESETGAME, this, this.onGameScoreNan);
+
     }
     private unRegisterEvent() {
-        EventMgr.Instance.AddEventListener(EventKey.MSG_SMASHEGGRES, this, this.onAddBetRes);
+        EventMgr.Instance.RemoveListenner(EventKey.UI_MSG_SMASHEGGRES, this, this.onAddBetRes);
+        EventMgr.Instance.RemoveListenner(EventKey.Update_Currency, this, this.onUpdateScore);
+        EventMgr.Instance.RemoveListenner(EventKey.UI_RESETGAME, this, this.onGameScoreNan);
     }
 
     /**
@@ -112,6 +123,16 @@ export default class Home_Ctrl extends UIBase {
         let item = cc.instantiate(res);
         this.spPMD.addChild(item);
         item.addComponent(Marquee_Ctrl);
+    }
+
+    /**
+     * 更新金币
+     */
+    private updateScore() {
+        if (this.labScore) {
+            let score = GameLogic.Instance.getAppScore();
+            this.labScore.string = `${score}`;
+        }
     }
 
     private showAni() {
@@ -237,6 +258,11 @@ export default class Home_Ctrl extends UIBase {
         this.setAddBetBtnStatus(true);
     }
 
+    /**
+     * 下注返回
+     * @param uname 
+     * @param udata 
+     */
     private onAddBetRes(uname: string, udata: SmashEggRes) {
         console.log("=================Home_Ctrl.onAddBetRes================", udata);
         if (udata) {
@@ -245,6 +271,25 @@ export default class Home_Ctrl extends UIBase {
             for (let i = 0; i < list.length; i++) {
                 this.createChip(list[i], i);
             }
+            this.updateScore();
         }
+    }
+
+    /**
+     * 更新金币
+     * @param uname 
+     * @param udate 
+     */
+    private onUpdateScore(uname: string, udate: string) {
+        this.updateScore();
+    }
+
+    /**
+     * 用户金币不足
+     * @param uname 
+     * @param udate 
+     */
+    private onGameScoreNan(uname: string, udate: string) {
+        this.setAddBetBtnStatus(true);
     }
 }

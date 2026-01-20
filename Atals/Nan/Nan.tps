@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename>../../client_tree/assets/AssetPackage/Atals/Second/Notice.png</filename>
+        <filename>../../client_tree/assets/AssetPackage/Atals/Second/Nan.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>

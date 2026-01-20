@@ -1,7 +1,7 @@
 import EventMgr from "../Framework/Managers/EventMgr";
 import { NetMsg } from "../Framework/Managers/Net/NetMgr";
 import { ResMgr } from "../Framework/Managers/ResMgr";
-import UIMgr from "../Framework/Managers/UIMgr";
+import UIMgr, { UILayer } from "../Framework/Managers/UIMgr";
 import CocosUtils from "../Framework/Utils/CocosUtils";
 import DebugUtils from "../Framework/Utils/DebugUtils";
 import TimeUtils from "../Framework/Utils/TimeUtils";
@@ -164,6 +164,8 @@ export default class GameApp extends cc.Component {
         NetHttpMgr.Instance.GetGameInfo();
         // 链接网路
         NetWsMgr.Instance.connectNet();
+        /** 获取游戏的配置 */
+        NetHttpMgr.Instance.GetSmahhCfg();
     }
 
     private goToHome() {
@@ -232,6 +234,11 @@ export default class GameApp extends cc.Component {
 
         // 更新按钮的状态
         EventMgr.Instance.Emit(EventKey.UI_UpadteBtnStatus, true);
+    }
+
+    /** 展示金币不足 */
+    public showCoinNan() {
+        UIMgr.Instance.ShowUIViewAsync(UICfg.Nan, AbNames.Prefabs, UILayer.UI_Layer2);
     }
 
     /**

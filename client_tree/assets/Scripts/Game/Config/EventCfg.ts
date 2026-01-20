@@ -36,9 +36,14 @@ export const EventKey = {
     //---------------------------------------------
     /** 个人记录返回 */
     MSG_GETRECORD_LIST: "MSG_GETRECORD_LIST",
+    /** 砸蛋的配置 */
+    MSG_SMASHECFG: "MSG_SMASHECFG",
 
     MSG_SMASHEGGRES: "MSG_SMASHEGGRES",
-
+    /** 砸蛋返回 */
+    UI_MSG_SMASHEGGRES: "UI_MSG_SMASHEGGRES",
     /** 接受新的跑马灯 */
     MSG_NEW_MARQUEE: "MSG_NEW_MARQUEE",
+    /** 重置状态 */
+    UI_RESETGAME: "UI_RESETGAME",
 };
