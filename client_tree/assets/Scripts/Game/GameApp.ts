@@ -241,7 +241,7 @@ export default class GameApp extends cc.Component {
    */
     private onHttpGameCfgRes(uname: string, udata: IGameCfg) {
         if (udata) {
-            this.showNoticeStatus(udata.pop);
+            // this.showNoticeStatus(udata.pop);
         }
     }
 

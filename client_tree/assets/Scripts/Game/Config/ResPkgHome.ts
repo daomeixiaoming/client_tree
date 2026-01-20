@@ -5,7 +5,7 @@ export const ResPkg_First = {
     Atals: [
         {
             assetType: cc.SpriteAtlas,
-            urls: [AtalsCfg.Common, AtalsCfg.Home],
+            urls: [AtalsCfg.Common, AtalsCfg.Home, AtalsCfg.Notice],
         },
     ],
     Prefabs: [
@@ -26,20 +26,18 @@ export const ResPkg_First = {
 
 // 非起步必须加载的资源
 export const ResPkg_Second = {
-    Atals: [
-        {
-            assetType: cc.SpriteAtlas,
-            urls: [
-                AtalsCfg.Notice,
-            ],
-        },
-    ],
+    // Atals: [
+    //     {
+    //         assetType: cc.SpriteAtlas,
+    //         urls: [
+
+    //         ],
+    //     },
+    // ],
     Prefabs: [
         {
             assetType: cc.Prefab,
             urls: [
-                UICfg.Notice,
-                UICfg.Agree,
                 UICfg.Toast,
             ],
         },

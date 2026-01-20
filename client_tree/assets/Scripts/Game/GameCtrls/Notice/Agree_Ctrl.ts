@@ -9,8 +9,8 @@ const { ccclass, property } = cc._decorator;
  */
 @ccclass
 export default class Agree_Ctrl extends UIBase {
-    content: cc.Node;
     labContent: cc.Label;
+    notice_bg: cc.Node;
     onLoad() {
         super.onLoad();
         this.initUI();
@@ -21,11 +21,11 @@ export default class Agree_Ctrl extends UIBase {
         this.AddButtonListener("content/notice_bg/btnAgreeClose", this, this.onBtnClick);
         this.labContent = this.ViewComponent("content/notice_bg/ScrollView/view/content/Label", cc.Label) as cc.Label;
 
-        this.content = this.view["content/notice_bg"] as cc.Node;
-        this.content.y = -1500;
-        cc.Tween.stopAllByTarget(this.content);
-        cc.tween(this.content)
-            .to(0.3, { position: cc.v3(0, 0, 0) }, { easing: 'quadOut' })
+        this.notice_bg = this.view["content/notice_bg"] as cc.Node;
+        this.notice_bg.y = -1362;
+        cc.Tween.stopAllByTarget(this.notice_bg);
+        cc.tween(this.notice_bg)
+            .to(0.3, { position: cc.v3(0, -262, 0) }, { easing: 'quadOut' })
             .start();
     }
 
@@ -36,13 +36,13 @@ export default class Agree_Ctrl extends UIBase {
     private onBtnClick(): void {
         cc.sys.localStorage.setItem("agree_notice", "1");
         EventMgr.Instance.Emit(EventKey.UI_Agree_True, "");
-        this.node.destroy();
+        this.onBtnCloseClick();
     }
 
     private onBtnCloseClick(): void {
         // 添加音效
-        cc.Tween.stopAllByTarget(this.content);
-        cc.tween(this.content).to(0.3, { position: cc.v3(0, -1080, 0) }).call(() => {
+        cc.Tween.stopAllByTarget(this.notice_bg);
+        cc.tween(this.notice_bg).to(0.3, { position: cc.v3(0, -1362, 0) }).call(() => {
             this.node.destroy();
         }).start();
     }

@@ -70,6 +70,12 @@ export default class Home_Ctrl extends UIBase {
 
         //加载节点池
         NodePoolMgr.Instance.AddNodePool(AbNames.Prefabs, UICfg.HomeChip, 20);
+
+        // 消息跑前面了
+        let cfg = GameLogic.Instance.gameCfg;
+        if (cfg) {
+            GameApp.Instance.showNoticeStatus(cfg.pop || 0);
+        }
     }
 
     private registerEvent() {
