@@ -52,7 +52,7 @@ export default class Home_Ctrl extends UIBase {
         this.AddButtonListener("node/bg/btnClose", this, this.onBackClick);
         this.AddButtonListener("node/bg/btnMore", this, this.onMoreClick);
         this.AddButtonListener("node/bg/addBets/btn1", this, this.onAddBet1Click); //下注筹码
-        this.AddButtonListener("node/bg/addBets/btn2", this, this.onAddBet2Click);
+        this.AddButtonListener("node/bg/addBets/btn2", this, this.onAddBet2Click); //
         this.AddButtonListener("node/bg/addBets/btn3", this, this.onAddBet3Click);
         this.AddButtonListener("node/bg/addBets/btn4", this, this.onAddBet4Click);
 
@@ -88,7 +88,6 @@ export default class Home_Ctrl extends UIBase {
         EventMgr.Instance.AddEventListener(EventKey.UI_MSG_SMASHEGGRES, this, this.onAddBetRes);
         EventMgr.Instance.AddEventListener(EventKey.Update_Currency, this, this.onUpdateScore);
         EventMgr.Instance.AddEventListener(EventKey.UI_RESETGAME, this, this.onGameScoreNan);
-
     }
     private unRegisterEvent() {
         EventMgr.Instance.RemoveListenner(EventKey.UI_MSG_SMASHEGGRES, this, this.onAddBetRes);
@@ -97,7 +96,7 @@ export default class Home_Ctrl extends UIBase {
     }
 
     /**
-     * 初始化动画
+     * 初始化树摇的动画
      */
     private initAni() {
         ResMgrAsync.Instance.IE_GetAsset(AbNames.Spines, SpineCfg.sp_tree, sp.SkeletonData).then((res: sp.SkeletonData) => {
@@ -109,10 +108,26 @@ export default class Home_Ctrl extends UIBase {
             // 动画播放结束事件
             this.spAni.setCompleteListener(() => {
                 console.log("===========Home_Ctrl.showAni.setEndListener===================");
-                this.closeAni();
-                GameLogic.Instance.sendAddBet(this.chioiceType);
+                // this.closeAni();
             })
         })
+    }
+
+    /**
+     * 播放树摇的动画
+     */
+    private showAni() {
+        this.spAni.paused = false;
+        this.spAni.setAnimation(0, "animation", true);
+        this.light.active = false;
+    }
+
+    /**
+     * 关闭树摇的动画
+     */
+    private closeAni() {
+        this.spAni.paused = false
+        this.light.active = true;
     }
 
     /**
@@ -133,18 +148,6 @@ export default class Home_Ctrl extends UIBase {
             let score = GameLogic.Instance.getAppScore();
             this.labScore.string = `${score}`;
         }
-    }
-
-    private showAni() {
-        this.spAni.setAnimation(0, "animation", false);
-        this.light.active = false;
-
-
-    }
-
-    private closeAni() {
-        this.spAni.paused = false
-        this.light.active = true;
     }
 
     /**
@@ -180,32 +183,62 @@ export default class Home_Ctrl extends UIBase {
         button.scheduleOnce(() => {
             button.interactable = true;
         }, 1);
-
         UIViewMgr.Instance.showMenu();
     }
 
+    /**
+     * 摇1次
+     * @param button 
+     */
     private onAddBet1Click(button: cc.Button) {
-        this.chioiceType = 1;
-        this.showAni();
-        this.setAddBetBtnStatus(false);
+        this.addBet(1);
     }
 
+    /**
+     * 摇5次
+     * @param button 
+     */
     private onAddBet2Click(button: cc.Button) {
-        this.chioiceType = 5;
-        this.showAni();
-        this.setAddBetBtnStatus(false);
+        this.addBet(5);
     }
 
+    /**
+     * 摇10次
+     * @param button 
+     */
     private onAddBet3Click(button: cc.Button) {
-        this.chioiceType = 10;
-        this.showAni();
-        this.setAddBetBtnStatus(false);
+        this.addBet(10);
     }
 
+    /**
+     * 摇20次
+     * @param button 
+     */
     private onAddBet4Click(button: cc.Button) {
-        this.chioiceType = 10;
+        this.addBet(10);
+    }
+
+    /**
+     * 
+     * @param type 数量 
+     */
+    private addBet(type: number) {
+        this.chioiceType = type;
         this.showAni();
         this.setAddBetBtnStatus(false);
+
+        let scoreCur = GameLogic.Instance.getAppScore();
+        let gameCfgs = GameLogic.Instance.gameCfgs;
+        let cfg = gameCfgs.find(item => item.type === 1);
+        let cost = type * cfg.cost;
+        if (scoreCur >= cost) {
+            GameLogic.Instance.sendAddBet(this.chioiceType);
+            this.scheduleOnce(() => {
+                this.showAni();
+            }, 0.05)
+        } else {
+            GameApp.Instance.showCoinNan();
+        }
     }
 
     private createChip(data: RewardResponse, idx: number) {
@@ -246,7 +279,7 @@ export default class Home_Ctrl extends UIBase {
                 NodePoolMgr.Instance.PutNodeInPool(AbNames.Prefabs, UICfg.HomeChip, item);
                 this.listlength--;
                 if (this.listlength <= 0) {
-                    console.log("============Home_Ctrl.createChip 結束============");
+                    console.warn("============Home_Ctrl.createChip 結束============");
                     this.onAniEnd();
                 }
             })
@@ -256,6 +289,9 @@ export default class Home_Ctrl extends UIBase {
     private onAniEnd() {
         this.listlength = 0;
         this.setAddBetBtnStatus(true);
+
+        this.spAni.paused = true;
+        // this.spAni.clearTrack(0);
     }
 
     /**
