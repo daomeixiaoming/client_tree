@@ -172,7 +172,7 @@
       "__uuid__": "583ada06-28bc-42da-bbea-15e450ba3446"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -181,7 +181,7 @@
     },
     "_fillStart": 0,
     "_fillRange": 0,
-    "_isTrimmedMode": true,
+    "_isTrimmedMode": false,
     "_atlas": {
       "__uuid__": "7689dcb3-74ac-425a-a307-8a86c08a13c5"
     },

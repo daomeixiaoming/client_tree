@@ -85,15 +85,15 @@
             <key>common_title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,44},{462,163}}</string>
+                <string>{{2,44},{462,166}}</string>
                 <key>offset</key>
-                <string>{0,-1}</string>
+                <string>{0,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,10},{462,163}}</string>
+                <string>{{0,11},{462,166}}</string>
                 <key>sourceSize</key>
-                <string>{462,181}</string>
+                <string>{462,184}</string>
             </dict>
             <key>common_titleline.png</key>
             <dict>
@@ -155,9 +155,9 @@
             <key>realTextureFileName</key>
             <string>Common.png</string>
             <key>size</key>
-            <string>{1016,209}</string>
+            <string>{1016,212}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b37d471ffe1c6958a4352bd4cef1a538$</string>
+            <string>$TexturePacker:SmartUpdate:dbd924d064049198865a9b4fa4687507$</string>
             <key>textureFileName</key>
             <string>Common.png</string>
         </dict>

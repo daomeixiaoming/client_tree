@@ -1,4 +1,5 @@
 import EventMgr from "../../../Framework/Managers/EventMgr";
+import { ResMgr } from "../../../Framework/Managers/ResMgr";
 import UIBase from "../../../Framework/Managers/UIBase";
 import UIMgr, { UILayer } from "../../../Framework/Managers/UIMgr";
 import CocosUtils from "../../../Framework/Utils/CocosUtils";
@@ -9,6 +10,7 @@ import { Lngs } from "../../Config/LngCfg";
 import { NetCfg } from "../../Config/NetCfg";
 import { AbNames, GuiCfg, UICfg } from "../../Config/ResCfg";
 import UIViewMgr from "../../Data/UIViewMgr";
+import Agree_Ctrl from "./Agree_Ctrl";
 
 const { ccclass, property } = cc._decorator;
 /**
@@ -120,6 +122,13 @@ export default class Notice_Ctrl extends UIBase {
 
     // 点击弹出玩法约定界面
     private onBtnShowAgree() {
-        UIViewMgr.Instance.showNotice(2);
+        // UIViewMgr.Instance.showNotice(2);
+
+        let pre = ResMgr.Instance.getAsset(AbNames.Prefabs, UICfg.Agree, cc.Prefab) as cc.Prefab;
+        if (pre) {
+            let node = cc.instantiate(pre);
+            node.addComponent(Agree_Ctrl);
+            this.node.addChild(node);
+        }
     }
 }

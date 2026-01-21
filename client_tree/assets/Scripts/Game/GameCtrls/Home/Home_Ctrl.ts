@@ -2,11 +2,15 @@ import EventMgr from "../../../Framework/Managers/EventMgr";
 import NodePoolMgr from "../../../Framework/Managers/NodePoolMgr";
 import { ResMgr } from "../../../Framework/Managers/ResMgr";
 import { ResMgrAsync } from "../../../Framework/Managers/ResMgrAsync";
+import SoundMgr from "../../../Framework/Managers/SoundMgr";
 import UIBase from "../../../Framework/Managers/UIBase";
+import CocosUtils from "../../../Framework/Utils/CocosUtils";
+import DebugUtils from "../../../Framework/Utils/DebugUtils";
+import GameUtils from "../../../Framework/Utils/GameUtils";
 import RandomUtils from "../../../Framework/Utils/RandomUtils";
 import { EventKey } from "../../Config/EventCfg";
 import { RewardResponse, SmashEggRes } from "../../Config/MsgCfg";
-import { AbNames, SpineCfg, UICfg } from "../../Config/ResCfg";
+import { AbNames, AtalsCfg, GuiCfg, SoundCfg, SpineCfg, UICfg } from "../../Config/ResCfg";
 import NetHttpMgr from "../../Data/NetHttpMgr";
 import UIViewMgr from "../../Data/UIViewMgr";
 import GameApp from "../../GameApp";
@@ -51,6 +55,7 @@ export default class Home_Ctrl extends UIBase {
     private initUI() {
         this.AddButtonListener("node/bg/btnClose", this, this.onBackClick);
         this.AddButtonListener("node/bg/btnMore", this, this.onMoreClick);
+        this.AddButtonListener("node/bg/btnVoice", this, this.onVoiceClick);
         this.AddButtonListener("node/bg/addBets/btn1", this, this.onAddBet1Click); //下注筹码
         this.AddButtonListener("node/bg/addBets/btn2", this, this.onAddBet2Click); //
         this.AddButtonListener("node/bg/addBets/btn3", this, this.onAddBet3Click);
@@ -65,6 +70,8 @@ export default class Home_Ctrl extends UIBase {
         this.initAni();
         this.light = this.view["node/bg/spAni/spLight"] as cc.Node;
         this.light.active = true;
+        let spLight = this.ViewComponent("node/bg/spAni/spLight", cc.Sprite) as cc.Sprite;
+        GameUtils.SetSpByAtals(spLight, GuiCfg.sp_tree);
 
         // 跑马灯
         this.spPMD = this.view["node/bg/spPMD"] as cc.Node;
@@ -73,6 +80,9 @@ export default class Home_Ctrl extends UIBase {
         // 分数
         this.labScore = this.ViewComponent("node/bg/spScoreBg/layout/lab", cc.Label) as cc.Label;
         this.updateScore();
+
+        // 初始化声音
+        this.setBtnViceSp();
 
         //加载节点池
         NodePoolMgr.Instance.AddNodePool(AbNames.Prefabs, UICfg.HomeChip, 20);
@@ -120,6 +130,7 @@ export default class Home_Ctrl extends UIBase {
         this.spAni.paused = false;
         this.spAni.setAnimation(0, "animation", true);
         this.light.active = false;
+        GameLogic.Instance.PlayMusic(SoundCfg.coin);
     }
 
     /**
@@ -187,6 +198,31 @@ export default class Home_Ctrl extends UIBase {
     }
 
     /**
+     * 点击声音
+     * @param button 
+     */
+    private onVoiceClick(button: cc.Button) {
+        let value = localStorage.getItem("GAME_SOUND_MUTE");
+        let v = parseInt(value);
+        let isOpen = v === 0 ? true : false;
+        DebugUtils.Log("=====================onVoiceClick=====================", value, isOpen);
+        SoundMgr.Instance.setSoundsMute(isOpen);
+        SoundMgr.Instance.setMusicMute(isOpen);
+
+        this.setBtnViceSp();
+    }
+
+    // 设置声音按钮的图片状态
+    private setBtnViceSp(): void {
+        let value = localStorage.getItem("GAME_SOUND_MUTE");
+        // DebugUtils.Log("==========setBtnViceSp设置声音按钮的图片状态==============", value);
+        let v = parseInt(value);
+        let sp_voice = this.ViewComponent("node/bg/btnVoice/sp", cc.Sprite) as cc.Sprite;
+        let path = v === 1 ? "home_btnvoice_close" : "home_btnvoice_open";
+        GameUtils.SetSpData(AbNames.Atals, AtalsCfg.Home, path, sp_voice);
+    }
+
+    /**
      * 摇1次
      * @param button 
      */
@@ -224,7 +260,6 @@ export default class Home_Ctrl extends UIBase {
      */
     private addBet(type: number) {
         this.chioiceType = type;
-        this.showAni();
         this.setAddBetBtnStatus(false);
 
         let scoreCur = GameLogic.Instance.getAppScore();

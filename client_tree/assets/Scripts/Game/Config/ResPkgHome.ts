@@ -19,7 +19,7 @@ export const ResPkg_First = {
     Guis: [
         {
             assetType: cc.SpriteFrame,
-            urls: [GuiCfg.bg_nan, GuiCfg.bg_home, GuiCfg.bg_notice],
+            urls: [GuiCfg.bg_home, GuiCfg.bg_nan, GuiCfg.bg_notice],
         },
     ],
 };
@@ -50,6 +50,14 @@ export const ResPkg_Second = {
             ]
         }
     ],
+    Sounds: [
+        {
+            assetType: cc.AudioClip,
+            urls: [
+                SoundCfg.coin,
+            ]
+        }
+    ]
 };
 
 //-----------------------------------

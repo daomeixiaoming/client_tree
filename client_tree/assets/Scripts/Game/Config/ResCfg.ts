@@ -61,19 +61,16 @@ export const SpineCfg = {
 
 /** 声音资源 */
 export const SoundCfg = {
-
+    /** 金币声音 */
+    coin: "coin",
 }
 
 
 /** 散图资源 */
 export const GuiCfg = {
-    /** 大厅背景 */
     bg_home: "bg_home",
-
     bg_common: "bg_common",
-
     bg_nan: "bg_nan",
-
     bg_notice: "bg_notice",
+    sp_tree: "sp_tree1",
 }
-
