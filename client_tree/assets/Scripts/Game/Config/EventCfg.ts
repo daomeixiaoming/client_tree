@@ -46,4 +46,8 @@ export const EventKey = {
     MSG_NEW_MARQUEE: "MSG_NEW_MARQUEE",
     /** 重置状态 */
     UI_RESETGAME: "UI_RESETGAME",
+    /** 播放树的动画 */
+    UI_PLAYTREE: "UI_PLAYTREE",
+    /** 停止树的动画 */
+    UI_STOPTREE: "UI_STOPTREE",
 };

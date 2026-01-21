@@ -34,6 +34,8 @@ export const UICfg = {
     /** 大厅 */
     HomeChip: "First/HomeChip",
     HomeMenu: "First/HomeMenu",
+    HomeChipMgr: "First/HomeChipMgr",
+
     /**免打扰 */
     Agree: "First/Agree",
     Notice: "First/Notice",

@@ -12,7 +12,7 @@ export const ResPkg_First = {
         {
             assetType: cc.Prefab,
             urls: [
-                UICfg.Home, UICfg.HomeChip, UICfg.HomeMenu, UICfg.Agree, UICfg.Notice, UICfg.Marquee
+                UICfg.Home, UICfg.HomeChipMgr, UICfg.HomeChip, UICfg.HomeMenu, UICfg.Agree, UICfg.Notice, UICfg.Marquee,
             ],
         },
     ],

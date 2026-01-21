@@ -4,19 +4,18 @@ import { ResMgr } from "../../../Framework/Managers/ResMgr";
 import { ResMgrAsync } from "../../../Framework/Managers/ResMgrAsync";
 import SoundMgr from "../../../Framework/Managers/SoundMgr";
 import UIBase from "../../../Framework/Managers/UIBase";
-import CocosUtils from "../../../Framework/Utils/CocosUtils";
 import DebugUtils from "../../../Framework/Utils/DebugUtils";
 import GameUtils from "../../../Framework/Utils/GameUtils";
 import RandomUtils from "../../../Framework/Utils/RandomUtils";
 import { EventKey } from "../../Config/EventCfg";
 import { RewardResponse, SmashEggRes } from "../../Config/MsgCfg";
 import { AbNames, AtalsCfg, GuiCfg, SoundCfg, SpineCfg, UICfg } from "../../Config/ResCfg";
-import NetHttpMgr from "../../Data/NetHttpMgr";
 import UIViewMgr from "../../Data/UIViewMgr";
 import GameApp from "../../GameApp";
 import GameLogic from "../../GameLogic";
 import Marquee_Ctrl from "../../Marquee_Ctrl";
 import HomeChip_Ctrl from "./HomeChip_Ctrl";
+import HomeChipMgr_Ctrl from "./HomeChipMgr_Ctrl";
 
 const { ccclass, property } = cc._decorator;
 /**
@@ -24,11 +23,6 @@ const { ccclass, property } = cc._decorator;
  */
 @ccclass
 export default class Home_Ctrl extends UIBase {
-    /** 筹码的区域 */
-    chipArea: cc.Node = null;
-    /** 筹码的起始区间 */
-    mask1: cc.Node = null;
-    mask2: cc.Node;
     spAni: sp.Skeleton;
     light: cc.Node;
     chioiceType: number = 1;
@@ -61,10 +55,6 @@ export default class Home_Ctrl extends UIBase {
         this.AddButtonListener("node/bg/addBets/btn3", this, this.onAddBet3Click);
         this.AddButtonListener("node/bg/addBets/btn4", this, this.onAddBet4Click);
 
-        this.chipArea = this.view["node/bg/chipArea"] as cc.Node;
-        this.mask1 = this.view["node/bg/chipArea/spMask1"] as cc.Node;
-        this.mask2 = this.view["node/bg/chipArea/spMask2"] as cc.Node;
-
         // 动画
         this.spAni = this.ViewComponent("node/bg/spAni/spAni", sp.Skeleton) as sp.Skeleton;
         this.initAni();
@@ -77,9 +67,15 @@ export default class Home_Ctrl extends UIBase {
         this.spPMD = this.view["node/bg/spPMD"] as cc.Node;
         this.initPMD();
 
+        // 初始化筹码管理器
+        this.initChipMgr();
+
         // 分数
         this.labScore = this.ViewComponent("node/bg/spScoreBg/layout/lab", cc.Label) as cc.Label;
         this.updateScore();
+
+        let spScoreBg = this.view["node/bg/spScoreBg"] as cc.Node;
+        spScoreBg.active = CC_DEBUG;
 
         // 初始化声音
         this.setBtnViceSp();
@@ -98,11 +94,16 @@ export default class Home_Ctrl extends UIBase {
         EventMgr.Instance.AddEventListener(EventKey.UI_MSG_SMASHEGGRES, this, this.onAddBetRes);
         EventMgr.Instance.AddEventListener(EventKey.Update_Currency, this, this.onUpdateScore);
         EventMgr.Instance.AddEventListener(EventKey.UI_RESETGAME, this, this.onGameScoreNan);
+        EventMgr.Instance.AddEventListener(EventKey.UI_PLAYTREE, this, this.onPlayTreeAni);
+        EventMgr.Instance.AddEventListener(EventKey.UI_STOPTREE, this, this.onStopTreeAni);
     }
+
     private unRegisterEvent() {
         EventMgr.Instance.RemoveListenner(EventKey.UI_MSG_SMASHEGGRES, this, this.onAddBetRes);
         EventMgr.Instance.RemoveListenner(EventKey.Update_Currency, this, this.onUpdateScore);
         EventMgr.Instance.RemoveListenner(EventKey.UI_RESETGAME, this, this.onGameScoreNan);
+        EventMgr.Instance.RemoveListenner(EventKey.UI_PLAYTREE, this, this.onPlayTreeAni);
+        EventMgr.Instance.RemoveListenner(EventKey.UI_STOPTREE, this, this.onStopTreeAni);
     }
 
     /**
@@ -119,10 +120,9 @@ export default class Home_Ctrl extends UIBase {
             }
 
             // 动画播放结束事件
-            this.spAni.setCompleteListener(() => {
-                console.log("===========Home_Ctrl.showAni.setEndListener===================");
-                // this.closeAni();
-            })
+            // this.spAni.setCompleteListener(() => {
+            //     // console.log("===========Home_Ctrl.showAni.setEndListener===================");
+            // })
         })
     }
 
@@ -130,6 +130,7 @@ export default class Home_Ctrl extends UIBase {
      * 播放树摇的动画
      */
     private showAni() {
+        console.log("=================Home_Ctrl.showAni================");
         this.spAni.paused = false;
         this.spAni.setAnimation(0, "animation", true);
         this.light.active = false;
@@ -152,6 +153,21 @@ export default class Home_Ctrl extends UIBase {
         let item = cc.instantiate(res);
         this.spPMD.addChild(item);
         item.addComponent(Marquee_Ctrl);
+    }
+
+    /**
+     * 初始化筹码区域
+     */
+    private initChipMgr() {
+        let chip = this.view["node/bg/chipArea"] as cc.Node;
+        let res = ResMgr.Instance.getAsset(AbNames.Prefabs, UICfg.HomeChipMgr, cc.Prefab) as cc.Prefab;
+        if (res) {
+            let item = cc.instantiate(res);
+            chip.addChild(item);
+            item.addComponent(HomeChipMgr_Ctrl);
+        } else {
+            console.error("===========Home_Ctrl.initChipMgr error==============");
+        }
     }
 
     /**
@@ -190,7 +206,7 @@ export default class Home_Ctrl extends UIBase {
 
     /**
      * 点击菜单
-     * @param button \
+     * @param button
      */
     private onMoreClick(button: cc.Button) {
         button.interactable = false;
@@ -211,7 +227,6 @@ export default class Home_Ctrl extends UIBase {
         DebugUtils.Log("=====================onVoiceClick=====================", value, isOpen);
         SoundMgr.Instance.setSoundsMute(isOpen);
         SoundMgr.Instance.setMusicMute(isOpen);
-
         this.setBtnViceSp();
     }
 
@@ -258,7 +273,7 @@ export default class Home_Ctrl extends UIBase {
     }
 
     /**
-     * 
+     * 点击开始摇树
      * @param type 数量 
      */
     private addBet(type: number) {
@@ -272,63 +287,18 @@ export default class Home_Ctrl extends UIBase {
         if (scoreCur >= cost) {
             GameLogic.Instance.sendAddBet(this.chioiceType);
             this.scheduleOnce(() => {
-                this.showAni();
-            }, 0.05)
+                this.setAddBetBtnStatus(true);
+            }, 0.25)
         } else {
             GameApp.Instance.showCoinNan();
         }
     }
 
-    private createChip(data: RewardResponse, idx: number) {
-        let pre = NodePoolMgr.Instance.GetNodeInPool(AbNames.Prefabs, UICfg.HomeChip);
-        let item: cc.Node = cc.instantiate(pre);
-        item.opacity = 0;
-        item.addComponent(HomeChip_Ctrl);
-        this.scheduleOnce(() => {
-            item.emit("initChip", data);
-        })
-
-        this.chipArea.addChild(item);
-        let areaSize = this.chipArea.getContentSize();
-        let startSize = this.mask1.getContentSize();
-        let endSize = this.mask2.getContentSize();
-        let itemSize = item.getContentSize();
-        let offsetY = startSize.height - itemSize.height;
-
-        let randomY = RandomUtils.getRandomInt(0, offsetY);
-        let randomX = RandomUtils.getRandomInt(0, startSize.width / 2 - itemSize.width);
-        // console.log("================createChip=================", randomX);
-        let dir = Math.random() < 0.5 ? 1 : -1;
-        item.setPosition(randomX * dir, randomY);
-
-        let moveY = areaSize.height - startSize.height - endSize.height;
-        let moveY2 = itemSize.height + randomY
-        cc.Tween.stopAllByTarget(item);
-        let t = cc.tween;
-        t(item)
-            .delay(0.35 * idx)
-            .to(0.25, { opacity: 255 })
-            .by(1, { position: cc.v3(0, moveY, 0) })
-            .parallel(
-                t().by(0.75, { position: cc.v3(0, moveY2, 0) }),
-                t().to(0.75, { opacity: 0 })
-            )
-            .call(() => {
-                NodePoolMgr.Instance.PutNodeInPool(AbNames.Prefabs, UICfg.HomeChip, item);
-                this.listlength--;
-                if (this.listlength <= 0) {
-                    console.warn("============Home_Ctrl.createChip 結束============");
-                    this.onAniEnd();
-                }
-            })
-            .start();
-    }
-
+    /** 停止动画 */
     private onAniEnd() {
         this.listlength = 0;
         this.setAddBetBtnStatus(true);
         this.closeAni();
-
     }
 
     /**
@@ -339,11 +309,6 @@ export default class Home_Ctrl extends UIBase {
     private onAddBetRes(uname: string, udata: SmashEggRes) {
         console.log("=================Home_Ctrl.onAddBetRes================", udata);
         if (udata) {
-            let list = udata.rewardList;
-            this.listlength = list.length;
-            for (let i = 0; i < list.length; i++) {
-                this.createChip(list[i], i);
-            }
             this.updateScore();
         }
     }
@@ -364,5 +329,23 @@ export default class Home_Ctrl extends UIBase {
      */
     private onGameScoreNan(uname: string, udate: string) {
         this.setAddBetBtnStatus(true);
+    }
+
+    /**
+     * 播放树的动画
+     * @param uname 
+     * @param udate 
+     */
+    private onPlayTreeAni(uname: string, udate: string) {
+        this.showAni();
+    }
+
+    /**
+     * 停止树的动画
+     * @param uname 
+     * @param udate 
+     */
+    private onStopTreeAni(uname: string, udate: string) {
+        this.onAniEnd();
     }
 }
