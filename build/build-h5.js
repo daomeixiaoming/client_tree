@@ -7,9 +7,9 @@ require('dotenv').config();
 console.log(process.env.CDN_BASE_URL);
 
 // 配置路径
-const DIST = path.resolve(__dirname, '../client_bxgh/build/web-mobile'); // Cocos 构建输出目录
+const DIST = path.resolve(__dirname, '../client_tree/build/web-mobile'); // Cocos 构建输出目录
 const OUTPUT = path.resolve(__dirname, '../dist');
-const CDN_BASE_URL = process.env.CDN_BASE_URL || '/game/120';
+const CDN_BASE_URL = process.env.CDN_BASE_URL || '/game/122';
 
 // 核心文件列表（必须首屏加载）
 const CORE_FILES = [
