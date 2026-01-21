@@ -72,5 +72,5 @@ export const GuiCfg = {
     bg_common: "bg_common",
     bg_nan: "bg_nan",
     bg_notice: "bg_notice",
-    sp_tree: "sp_tree1",
+    sp_tree1: "sp_tree1",
 }

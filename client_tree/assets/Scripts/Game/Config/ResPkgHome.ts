@@ -19,7 +19,7 @@ export const ResPkg_First = {
     Guis: [
         {
             assetType: cc.SpriteFrame,
-            urls: [GuiCfg.bg_home, GuiCfg.bg_nan, GuiCfg.bg_notice],
+            urls: [GuiCfg.bg_home, GuiCfg.bg_nan, GuiCfg.bg_notice, GuiCfg.sp_tree1],
         },
     ],
 };

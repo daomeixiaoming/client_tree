@@ -69,9 +69,9 @@ export default class Home_Ctrl extends UIBase {
         this.spAni = this.ViewComponent("node/bg/spAni/spAni", sp.Skeleton) as sp.Skeleton;
         this.initAni();
         this.light = this.view["node/bg/spAni/spLight"] as cc.Node;
-        this.light.active = true;
+        this.light.active = false;
         let spLight = this.ViewComponent("node/bg/spAni/spLight", cc.Sprite) as cc.Sprite;
-        GameUtils.SetSpByAtals(spLight, GuiCfg.sp_tree);
+        GameUtils.SetSpByAtals(spLight, GuiCfg.sp_tree1);
 
         // 跑马灯
         this.spPMD = this.view["node/bg/spPMD"] as cc.Node;
@@ -110,9 +110,12 @@ export default class Home_Ctrl extends UIBase {
      */
     private initAni() {
         ResMgrAsync.Instance.IE_GetAsset(AbNames.Spines, SpineCfg.sp_tree, sp.SkeletonData).then((res: sp.SkeletonData) => {
+            console.log("===========Home_Ctrl.showAni.initAni1===================", res, this.spAni);
             if (res) {
                 this.spAni.skeletonData = res;
                 this.spAni.loop = false;
+                this.spAni.node.active = true;
+                this.light.active = true;
             }
 
             // 动画播放结束事件
@@ -137,7 +140,7 @@ export default class Home_Ctrl extends UIBase {
      * 关闭树摇的动画
      */
     private closeAni() {
-        this.spAni.paused = false
+        this.spAni.paused = true
         this.light.active = true;
     }
 
@@ -324,9 +327,8 @@ export default class Home_Ctrl extends UIBase {
     private onAniEnd() {
         this.listlength = 0;
         this.setAddBetBtnStatus(true);
+        this.closeAni();
 
-        this.spAni.paused = true;
-        // this.spAni.clearTrack(0);
     }
 
     /**
