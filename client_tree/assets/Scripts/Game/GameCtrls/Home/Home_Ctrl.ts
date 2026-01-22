@@ -75,7 +75,7 @@ export default class Home_Ctrl extends UIBase {
         this.updateScore();
 
         let spScoreBg = this.view["node/bg/spScoreBg"] as cc.Node;
-        spScoreBg.active = CC_DEBUG;
+        spScoreBg.active = false;
 
         // 初始化声音
         this.setBtnViceSp();
@@ -132,7 +132,8 @@ export default class Home_Ctrl extends UIBase {
     private showAni() {
         console.log("=================Home_Ctrl.showAni================");
         this.spAni.paused = false;
-        this.spAni.setAnimation(0, "animation", true);
+        this.spAni.clearTrack(0); //清空轨道
+        this.spAni.setAnimation(0, "animation", true); // 播放动画
         this.light.active = false;
         GameLogic.Instance.PlayMusic(SoundCfg.coin);
     }
@@ -143,6 +144,7 @@ export default class Home_Ctrl extends UIBase {
     private closeAni() {
         this.spAni.paused = true
         this.light.active = true;
+        this.spAni.setToSetupPose();
     }
 
     /**

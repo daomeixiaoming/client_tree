@@ -90,6 +90,7 @@ export default class HomeChipMgr_Ctrl extends UIBase {
                 this.listRes.length;
                 if (this.listRes.length <= 0) {
                     console.error("============HomeChipMgr_Ctrl.createChip 結束============", this.listRes.length);
+                    this.isPlayAddBetAni = !this.isPlayAddBetAni;
                     EventMgr.Instance.Emit(EventKey.UI_STOPTREE, "");
                 }
             })

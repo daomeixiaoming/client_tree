@@ -1,14 +1,14 @@
 let IP = "192.168.3.225";
 // 网络配置
-const debug = true;// true是debug false 是release
+const gameDebug = true;// true是debug false 是release
 export const NetCfg = {
   IP: IP, //IP 本地127.0.0.1 本地测试10.0.0.151
   PORT: 6086, //端口
   // 长连接
-  wss: debug
+  wss: gameDebug
     ? "wss://dev.jumiao.live/ws/ws"
     : "wss://api.vvzb.live/ws/ws",
-  url: debug
+  url: gameDebug
     ? "https://dev.jumiao.live/"
     : "https://api.vvzb.live/",
   /** 游戏id*/

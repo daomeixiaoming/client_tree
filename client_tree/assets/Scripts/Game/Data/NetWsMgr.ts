@@ -43,7 +43,7 @@ export default class NetWsMgr extends cc.Component {
 
 
     private onWsEventConnect(uanme: string, udata: any) {
-        CocosUtils.showToast("网络连接成功！", 0);
+        // CocosUtils.showToast("网络连接成功！", 0);
     }
 
     private onWsEventDisConnect(uanme: string, udata: any) {
