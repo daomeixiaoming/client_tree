@@ -29,7 +29,7 @@ export default class NetHttpMgr extends NetHttpBase {
   public Init(): void {
     DebugUtils.Log("========NetHttpMgr Init==========");
     this.url = NetCfg.url;
-    this.url = `${NetCfg.url}app-api/`;
+    this.url = `${NetCfg.url}app-api/money-tree/`;
   }
 
   //------------------------------------------------------------通用数据-------------------------------------------------------------
@@ -39,7 +39,7 @@ export default class NetHttpMgr extends NetHttpBase {
 */
   public GetSmahhCfg() {
     let url = this.url;
-    url += "lucky-egg/smash-conf";
+    url += "smash-conf";
     let body = {};
     console.log("=============GetSmahhCfg============", url, NetCfg.token);
     HttpUtils.PostJson(url, null, JSON.stringify(body), (err, udata) => {
@@ -69,7 +69,7 @@ export default class NetHttpMgr extends NetHttpBase {
   */
   public SmashEggReq(data: SmashEggReq) {
     let url = this.url;
-    url += "lucky-egg/smash";
+    url += "smash";
     let body = data;
     HttpUtils.PostJson(url, null, JSON.stringify(body), (err, udata) => {
       let data: HttpResponse = JSON.parse(udata);
@@ -99,7 +99,7 @@ export default class NetHttpMgr extends NetHttpBase {
  */
   public GetRecordListReq(data: GetRecordsReq) {
     let url = this.url;
-    url += "lucky-egg/records";
+    url += "records";
     let body = data;
     HttpUtils.PostJson(url, null, JSON.stringify(body), (err, udata) => {
       let data: HttpResponse = JSON.parse(udata);

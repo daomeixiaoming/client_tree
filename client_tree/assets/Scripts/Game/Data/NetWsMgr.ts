@@ -37,7 +37,7 @@ export default class NetWsMgr extends cc.Component {
 
     /** 初始化网络 */
     public connectNet() {
-        let url = NetCfg.wss + `?Authorization=${NetCfg.token}&bid=lucky-egg`;
+        let url = NetCfg.wss + `?Authorization=${NetCfg.token}&bid=${NetCfg.bid}`;
         NetMgr.Instance.Init(url);
     }
 

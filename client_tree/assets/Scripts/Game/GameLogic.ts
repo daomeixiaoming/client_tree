@@ -61,7 +61,7 @@ export default class GameLogic extends cc.Component {
     isOpenUserRebate: boolean = true;
     choiceEgg: number;
     /** 游戏的筹码配置 */
-    gameCfgs: SmashCfgItem[] = [];
+    chipCfgs: SmashCfgItem[] = [];
 
 
     onLoad(): void {
@@ -189,7 +189,7 @@ export default class GameLogic extends cc.Component {
      * 点击下注
      */
     public sendAddBet(type: number) {
-        let cfg = this.gameCfgs.find(item => item.type === 1);
+        let cfg = this.chipCfgs.find(item => item.type === 1);
         let cost = type * cfg.cost;
         console.log("===========onAddBet===========", cost);
         if (cost <= this.getAppScore()) {
@@ -296,7 +296,7 @@ export default class GameLogic extends cc.Component {
      */
     private onGameCfgRes(uname: string, udata: SmashCfgItem[]) {
         if (udata) {
-            this.gameCfgs = [].concat(udata);
+            this.chipCfgs = [].concat(udata);
         } else {
             console.error("==============GameLogic.onGameCfgRes.error==========");
         }

@@ -16,10 +16,15 @@ export default class HomeChipMgr_Ctrl extends UIBase {
     chipArea: cc.Node;
     mask1: cc.Node;
     mask2: cc.Node;
-    /**记录奖励的结果 */
-    listRes: RewardResponse[] = [];
+    /**记录奖励的结果,多组 */
+    listRes: RewardResponse[][] = [];
+    /** 记录当前的那一组 */
+    tempList: RewardResponse[] = [];
     /** 是否播放树的动画 */
     isPlayAddBetAni: boolean = true;
+    /** 记录当前是第几组结果 */
+    resIdx: number = 0;
+
 
     onLoad() {
         super.onLoad();
@@ -50,7 +55,7 @@ export default class HomeChipMgr_Ctrl extends UIBase {
     }
 
     /** 创建单个筹码动画 */
-    private createChip(data: RewardResponse, idx: number) {
+    private createChip(data: RewardResponse) {
         let pre = NodePoolMgr.Instance.GetNodeInPool(AbNames.Prefabs, UICfg.HomeChip);
         let item: cc.Node = cc.instantiate(pre);
         item.opacity = 0;
@@ -58,8 +63,8 @@ export default class HomeChipMgr_Ctrl extends UIBase {
         this.scheduleOnce(() => {
             item.emit("initChip", data);
         }, 0);
-
         this.node.addChild(item);
+
         let areaSize = this.node.getContentSize();
         let startSize = this.mask1.getContentSize();
         let endSize = this.mask2.getContentSize();
@@ -69,32 +74,61 @@ export default class HomeChipMgr_Ctrl extends UIBase {
         let randomY = RandomUtils.getRandomInt(0, offsetY);
         let randomX = RandomUtils.getRandomInt(0, startSize.width / 2 - itemSize.width);
         // console.log("================HomeChipMgr_Ctrl.createChip=================", randomX);
+        let arr = [1, -1, 1, 1, -1, 1, 1, -1];
         let dir = Math.random() < 0.5 ? 1 : -1;
+        dir = RandomUtils.getRandomElement(arr);
         item.setPosition(randomX * dir, randomY);
 
         let moveY = areaSize.height - startSize.height - endSize.height;
+        let randomMoveY = RandomUtils.getRandomInt(moveY / 5 * 2, moveY / 5 * 3);
+        console.log("================HomeChipMgr_Ctrl.createChip=================", randomMoveY);
         let moveY2 = itemSize.height + randomY
         cc.Tween.stopAllByTarget(item);
         let t = cc.tween;
         t(item)
-            .delay(0.35 * idx)
             .to(0.25, { opacity: 255 })
-            .by(1, { position: cc.v3(0, moveY, 0) })
+            .by(0.5, { position: cc.v3(0, randomMoveY, 0) })
+            .delay(1)
+            .by(0.5, { position: cc.v3(0, moveY - randomMoveY, 0) })
             .parallel(
                 t().by(0.75, { position: cc.v3(0, moveY2, 0) }),
                 t().to(0.75, { opacity: 0 })
             )
             .call(() => {
-                this.listRes.shift();
                 NodePoolMgr.Instance.PutNodeInPool(AbNames.Prefabs, UICfg.HomeChip, item);
-                this.listRes.length;
-                if (this.listRes.length <= 0) {
-                    console.error("============HomeChipMgr_Ctrl.createChip 結束============", this.listRes.length);
-                    this.isPlayAddBetAni = !this.isPlayAddBetAni;
-                    EventMgr.Instance.Emit(EventKey.UI_STOPTREE, "");
-                }
+                let tempLen = this.tempList.length;
+                console.error("============HomeChipMgr_Ctrl.createChip 結束============", tempLen);
             })
             .start();
+    }
+
+    /**
+     * 播放其中一组
+     */
+    private playOneGroup() {
+        console.log("==============HomeChipMgr_Ctrl.playOneGroup=================", this.listRes.length);
+        this.tempList = this.listRes.shift() || [];
+        if (this.tempList && this.tempList.length > 0) { //当前组有数据
+            console.log("==============playOneGroup000=================");
+            this.schedule(() => {
+                console.log("==============playOneGroup111=================", this.tempList.length);
+                const ele = this.tempList.shift();
+                if (ele) {
+                    this.createChip(ele);
+                } else {
+                    console.log("===============playOneGroup333当前组结束===============");
+                    this.scheduleOnce(() => {
+                        this.playOneGroup();
+                    }, 2);
+                }
+            }, 0.2, this.tempList.length)
+            console.log("==============playOneGroup2222=================");
+        } else {
+            // 标记当前所有组结束
+            this.isPlayAddBetAni = !this.isPlayAddBetAni;
+            EventMgr.Instance.Emit(EventKey.UI_STOPTREE, "");
+            console.log("==============playOneGroup444444所有的加载完毕=================");
+        }
     }
 
     /**
@@ -104,17 +138,23 @@ export default class HomeChipMgr_Ctrl extends UIBase {
       */
     private onAddBetRes(uname: string, udata: SmashEggRes) {
         if (udata) {
+            let num = udata.num;
+            console.log("=============HomeChipMgr_Ctrl.onAddBetRes1===================", this.listRes.length, num);
             let list = udata.rewardList;
-            this.listRes = this.listRes.concat(list);
-            console.log("=================HomeChipMgr_Ctrl.onAddBetRes================", list.length);
-            for (let i = 0; i < list.length; i++) {
-                const ele = list[i];
-                this.createChip(ele, i);
-            }
+            // 标记是否是第一组
+            let isFirst = this.listRes.length === 0 ? true : false
+            this.listRes.push(list);
+            console.log("=================HomeChipMgr_Ctrl.onAddBetRes2================", isFirst, this.listRes);
 
             if (this.isPlayAddBetAni) {
+                console.log("=================HomeChipMgr_Ctrl.onAddBetRes3================");
                 this.isPlayAddBetAni = !this.isPlayAddBetAni;
-                EventMgr.Instance.Emit(EventKey.UI_PLAYTREE, "");
+                this.playOneGroup();
+                if (num === 1) {
+                    EventMgr.Instance.Emit(EventKey.UI_PLAYTREE, true);
+                } else {
+                    EventMgr.Instance.Emit(EventKey.UI_PLAYTREE, false);
+                }
             }
         }
     }

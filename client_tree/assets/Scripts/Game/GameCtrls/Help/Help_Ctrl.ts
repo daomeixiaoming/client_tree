@@ -32,7 +32,10 @@ export default class Help_Ctrl extends UIBase {
         if (cfg) {
             let paths = GameUtils.extractImgSrcWithRegex(cfg.regulation);
             if (paths.length > 0) {
-                CocosUtils.loadRemoteSprite(paths[0], sp_help, () => { })
+                CocosUtils.loadRemoteSprite(paths[0], sp_help, () => {
+                    let item_size = sp_help.node.getContentSize();
+                    console.log("===========loadRemoteSprite111=================", item_size.width);
+                })
                 CocosUtils.loadRemoteSprite(paths[1], sp_help2, () => { })
             }
         }

@@ -14,8 +14,10 @@ export default class SoundMgr extends cc.Component {
     private sounds: Array<cc.AudioSource> = [];
     private bgMusic: cc.AudioSource = null as unknown as cc.AudioSource;
 
-    private isMusicMute: boolean = false;   //是否背景音乐静音
-    private isSoundMute: boolean = false;   //是否音效静音
+    /** 是否背景音乐静音 */
+    private isMusicMute: boolean = false;
+    /** 是否音效静音 */
+    private isSoundMute: boolean = false;
 
     onLoad(): void {
         if (SoundMgr.Instance === null) {
@@ -33,17 +35,23 @@ export default class SoundMgr extends cc.Component {
 
         this.bgMusic = this.node.addComponent(cc.AudioSource) as cc.AudioSource;
 
-        // 从本地存储里面把设置读出来, 0, 1
+        // 从本地存储里面把设置读出来, 0, 1, 1关闭声音 0是开启声音
         var value = localStorage.getItem("GAME_MUSIC_MUTE");
+        console.log("=============GAME_MUSIC_MUTE=====================", value);
         if (value) {
             let v = parseInt(value);
             this.isMusicMute = (v === 1) ? true : false;
+        } else {
+            localStorage.setItem("GAME_MUSIC_MUTE", "1");
         }
 
         value = localStorage.getItem("GAME_SOUND_MUTE");
+        console.log("=============GAME_SOUND_MUTE=====================", value);
         if (value) {
             let v = parseInt(value);
             this.isSoundMute = (v === 1) ? true : false;
+        } else {
+            localStorage.setItem("GAME_SOUND_MUTE", "1");
         }
     }
 

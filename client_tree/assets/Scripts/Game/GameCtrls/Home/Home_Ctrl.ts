@@ -75,7 +75,7 @@ export default class Home_Ctrl extends UIBase {
         this.updateScore();
 
         let spScoreBg = this.view["node/bg/spScoreBg"] as cc.Node;
-        spScoreBg.active = false;
+        spScoreBg.active = true;
 
         // 初始化声音
         this.setBtnViceSp();
@@ -129,11 +129,11 @@ export default class Home_Ctrl extends UIBase {
     /**
      * 播放树摇的动画
      */
-    private showAni() {
+    private showAni(loop: boolean) {
         console.log("=================Home_Ctrl.showAni================");
         this.spAni.paused = false;
         this.spAni.clearTrack(0); //清空轨道
-        this.spAni.setAnimation(0, "animation", true); // 播放动画
+        this.spAni.setAnimation(0, "animation", loop); // 播放动画
         this.light.active = false;
         GameLogic.Instance.PlayMusic(SoundCfg.coin);
     }
@@ -271,7 +271,7 @@ export default class Home_Ctrl extends UIBase {
      * @param button 
      */
     private onAddBet4Click(button: cc.Button) {
-        this.addBet(10);
+        this.addBet(20);
     }
 
     /**
@@ -283,8 +283,8 @@ export default class Home_Ctrl extends UIBase {
         this.setAddBetBtnStatus(false);
 
         let scoreCur = GameLogic.Instance.getAppScore();
-        let gameCfgs = GameLogic.Instance.gameCfgs;
-        let cfg = gameCfgs.find(item => item.type === 1);
+        let chipCfgs = GameLogic.Instance.chipCfgs;
+        let cfg = chipCfgs.find(item => item.type === 1);
         let cost = type * cfg.cost;
         if (scoreCur >= cost) {
             GameLogic.Instance.sendAddBet(this.chioiceType);
@@ -338,8 +338,8 @@ export default class Home_Ctrl extends UIBase {
      * @param uname 
      * @param udate 
      */
-    private onPlayTreeAni(uname: string, udate: string) {
-        this.showAni();
+    private onPlayTreeAni(uname: string, udate: boolean) {
+        this.showAni(udate);
     }
 
     /**

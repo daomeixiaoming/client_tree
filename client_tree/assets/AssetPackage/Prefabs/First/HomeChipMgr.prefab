@@ -47,7 +47,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 750,
-      "height": 812
+      "height": 770
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -91,7 +91,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 3
@@ -114,7 +114,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 750,
-      "height": 812
+      "height": 770
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -126,7 +126,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        406,
+        385,
         0,
         0,
         0,
@@ -157,7 +157,7 @@
     "node": {
       "__id__": 2
     },
-    "_enabled": true,
+    "_enabled": false,
     "_materials": [
       {
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
@@ -223,12 +223,12 @@
   {
     "__type__": "cc.Node",
     "_name": "spMask1",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 1
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 7
@@ -294,7 +294,7 @@
     "node": {
       "__id__": 6
     },
-    "_enabled": true,
+    "_enabled": false,
     "_materials": [
       {
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
@@ -360,12 +360,12 @@
   {
     "__type__": "cc.Node",
     "_name": "spMask2",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 1
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 11
@@ -388,19 +388,19 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 750,
-      "height": 130
+      "height": 96
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.5
+      "y": 1
     },
     "_trs": {
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
         0,
-        747,
+        770,
         0,
         0,
         0,
@@ -431,7 +431,7 @@
     "node": {
       "__id__": 10
     },
-    "_enabled": true,
+    "_enabled": false,
     "_materials": [
       {
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
