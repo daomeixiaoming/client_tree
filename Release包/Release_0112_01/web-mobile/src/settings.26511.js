@@ -1,1 +1,0 @@
-window._CCSettings={platform:"web-mobile",groupList:["default"],collisionMatrix:[[true]],hasResourcesBundle:false,hasStartSceneBundle:false,remoteBundles:[],subpackages:[],launchScene:"db://assets/Scenes/game.fire",orientation:"",jsList:[],bundleVers:{internal:"d0832",Atals:"04ba6",Guis:"c2c8e",Prefabs:"d055c",Sounds:"a89ce",Spines:"6bdbf",main:"2fec5"}};

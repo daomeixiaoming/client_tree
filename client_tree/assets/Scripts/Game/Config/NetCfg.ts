@@ -18,12 +18,13 @@ export const NetCfg = {
   /** 主播id */
   anchorId: gameDebug ? 153 : 1000686,
   /** 校验token,网络请求需要 */
-  token: gameDebug ? "b02b896adf0b400da9b3fa898e9a41c5" : "47ec2c47a7dc43d6bf36d52fbfabaeb7",
+  token: gameDebug ? "f99daf42b48942669609730fe1ccf1c3" : "47ec2c47a7dc43d6bf36d52fbfabaeb7",
   /** ws长连接使用 */
   bid: "money-tree",
 };
 
 // api.vvzb.live 正式域名
 // b02b896adf0b400da9b3fa898e9a41c5 15623252003  "userNum": 10009324, 10009324
-// d2b9c188eb9843f39a919b09e603dcc6 15623252004  "userNum": 10002546, 瞄钻没了服务报错
-// c011accad86748208d86f60ea7e57ba6 15623252001  "userNum": 10004119, 
+// a8f68486a25545728d15074bca1ac007 15623252004  "userNum": 10002546, 瞄钻没了服务报错
+// c011accad86748208d86f60ea7e57ba6 15623252001  "userNum": 10004119,
+// f99daf42b48942669609730fe1ccf1c3 15623252005  "userNum": 10003375,

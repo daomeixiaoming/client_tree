@@ -1,20 +1,20 @@
 {
-  "version": "v1769235536149",
-  "timestamp": 1769235536976,
+  "version": "v1769242804193",
+  "timestamp": 1769242804999,
   "forceUpdate": false,
   "files": [
     {
       "name": "core.zip",
-      "url": "https://oss.vvzb.live/game/122/v1769235536149/core.zip",
-      "hash": "7a47e333eb6e6a4bfc3caee7aa3ed5e2",
+      "url": "https://oss.vvzb.live/game/122/v1769242804193/core.zip",
+      "hash": "067fd53d4fa91c3322c6276532264527",
       "size": 475198,
       "priority": 1,
       "type": "core"
     },
     {
       "name": "Atals.zip",
-      "url": "https://oss.vvzb.live/game/122/v1769235536149/Atals.zip",
-      "hash": "935cf0c7c7ce80f2bbbf57608f97f793",
+      "url": "https://oss.vvzb.live/game/122/v1769242804193/Atals.zip",
+      "hash": "e6ed3c163c2ea4b47b5b0f48f83c2da0",
       "size": 194878,
       "priority": 2,
       "type": "bundle",
@@ -24,8 +24,8 @@
     },
     {
       "name": "Guis.zip",
-      "url": "https://oss.vvzb.live/game/122/v1769235536149/Guis.zip",
-      "hash": "898503f4ed20610ec6da5257b5d1f6b5",
+      "url": "https://oss.vvzb.live/game/122/v1769242804193/Guis.zip",
+      "hash": "c75cf64d75250b3b1ae448c102c76334",
       "size": 487355,
       "priority": 3,
       "type": "bundle",
@@ -35,8 +35,8 @@
     },
     {
       "name": "internal.zip",
-      "url": "https://oss.vvzb.live/game/122/v1769235536149/internal.zip",
-      "hash": "00e20116e8071202843fbfac7d18312c",
+      "url": "https://oss.vvzb.live/game/122/v1769242804193/internal.zip",
+      "hash": "92713c82bdfc3daa2b3186b63bd80c24",
       "size": 7608,
       "priority": 4,
       "type": "bundle",
@@ -46,9 +46,9 @@
     },
     {
       "name": "main.zip",
-      "url": "https://oss.vvzb.live/game/122/v1769235536149/main.zip",
-      "hash": "c6fb3bc50a819952983dcc395d61eff4",
-      "size": 502981,
+      "url": "https://oss.vvzb.live/game/122/v1769242804193/main.zip",
+      "hash": "f92a7ee5228effe6b2f929522d1edf7d",
+      "size": 502983,
       "priority": 5,
       "type": "bundle",
       "dependencies": [
@@ -57,8 +57,8 @@
     },
     {
       "name": "Prefabs.zip",
-      "url": "https://oss.vvzb.live/game/122/v1769235536149/Prefabs.zip",
-      "hash": "78f7b94bca3a368591b7759792ae2620",
+      "url": "https://oss.vvzb.live/game/122/v1769242804193/Prefabs.zip",
+      "hash": "14b3da45c60431ede879f8a6e182937d",
       "size": 714813,
       "priority": 6,
       "type": "bundle",
@@ -68,8 +68,8 @@
     },
     {
       "name": "Sounds.zip",
-      "url": "https://oss.vvzb.live/game/122/v1769235536149/Sounds.zip",
-      "hash": "bae44226105696a160a03cd5b6541f80",
+      "url": "https://oss.vvzb.live/game/122/v1769242804193/Sounds.zip",
+      "hash": "65c39b00d7862ac73e610a793751198b",
       "size": 55288,
       "priority": 7,
       "type": "bundle",
@@ -79,8 +79,8 @@
     },
     {
       "name": "Spines.zip",
-      "url": "https://oss.vvzb.live/game/122/v1769235536149/Spines.zip",
-      "hash": "4b799d55e641debd8bc55151999be05f",
+      "url": "https://oss.vvzb.live/game/122/v1769242804193/Spines.zip",
+      "hash": "e77ef6fdbed591a32a1450dd2999961a",
       "size": 2967063,
       "priority": 8,
       "type": "bundle",

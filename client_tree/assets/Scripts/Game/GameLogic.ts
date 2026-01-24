@@ -280,10 +280,8 @@ export default class GameLogic extends cc.Component {
      */
     private onAddBetRes(uname: string, udata: SmashEggRes) {
         if (udata) {
-            let totalMoney = udata.totalMoney;
-            if (totalMoney) {
-                this.appDataInfo.diamondBalance = totalMoney;
-            }
+            let totalMoney = udata.totalMoney || 0;
+            this.appDataInfo.diamondBalance = totalMoney;
             EventMgr.Instance.Emit(EventKey.UI_MSG_SMASHEGGRES, udata);
         } else {
             console.error("==============GameLogic.onAddBetRes.error==========");

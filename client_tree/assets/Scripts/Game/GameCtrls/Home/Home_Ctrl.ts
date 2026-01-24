@@ -75,7 +75,7 @@ export default class Home_Ctrl extends UIBase {
         this.updateScore();
 
         let spScoreBg = this.view["node/bg/spScoreBg"] as cc.Node;
-        spScoreBg.active = false;
+        spScoreBg.active = true;
 
         // 初始化声音
         this.setBtnViceSp();
