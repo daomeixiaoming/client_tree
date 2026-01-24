@@ -139,7 +139,6 @@ export default class Home_Ctrl extends UIBase {
         this.spAni.clearTrack(0); //清空轨道
         this.spAni.setAnimation(0, "animation", loop); // 播放动画
         this.light.active = false;
-        GameLogic.Instance.PlayMusic(SoundCfg.coin);
     }
 
     /**
@@ -292,9 +291,9 @@ export default class Home_Ctrl extends UIBase {
         let cost = type * cfg.cost;
         if (scoreCur >= cost) {
             GameLogic.Instance.sendAddBet(this.chioiceType);
-            this.scheduleOnce(() => {
-                this.setAddBetBtnStatus(true);
-            }, 0.25)
+            // this.scheduleOnce(() => {
+            //     this.setAddBetBtnStatus(true);
+            // }, 0.25)
         } else {
             GameApp.Instance.showCoinNan();
             this.setAddBetBtnStatus(true);

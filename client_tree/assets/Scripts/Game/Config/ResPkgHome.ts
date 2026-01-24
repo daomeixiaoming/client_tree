@@ -12,7 +12,7 @@ export const ResPkg_First = {
         {
             assetType: cc.Prefab,
             urls: [
-                UICfg.Home, UICfg.HomeChipMgr, UICfg.HomeChip, UICfg.HomeMenu, UICfg.Agree, UICfg.Notice, UICfg.Marquee,
+                UICfg.Home, UICfg.HomeChipMgr, UICfg.HomeChip, UICfg.HomeMenu, UICfg.Agree, UICfg.Notice, UICfg.Marquee, UICfg.End1, UICfg.End2, UICfg.End3, UICfg.EndItem, UICfg.EndItem2
             ],
         },
     ],
@@ -54,7 +54,7 @@ export const ResPkg_Second = {
         {
             assetType: cc.AudioClip,
             urls: [
-                SoundCfg.coin,
+                SoundCfg.end,
             ]
         }
     ]

@@ -55,6 +55,13 @@ export const UICfg = {
     RecordItem2: "Second/Record/RecordItem2",
     RecordItem3: "Second/Record/RecordItem3",
     RecordItem4: "Second/Record/RecordItem4",
+
+    /**结算 */
+    End1: "Second/End/End1",
+    End2: "Second/End/End2",
+    End3: "Second/End/End3",
+    EndItem: "Second/End/EndItem",
+    EndItem2: "Second/End/EndItem2",
 };
 
 // spine动画资源
@@ -65,7 +72,7 @@ export const SpineCfg = {
 /** 声音资源 */
 export const SoundCfg = {
     /** 金币声音 */
-    coin: "coin",
+    end: "end",
 }
 
 

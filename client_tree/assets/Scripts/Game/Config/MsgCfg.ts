@@ -67,28 +67,9 @@ export interface HomeResponse {
     respawnTimer?: number;
     [property: string]: any;
 }
-
-// 礼物item数据
-export interface GiftItem {
-    /**礼物id */
-    giftId?: number;
-    /**礼物名字 */
-    giftName?: string;
-    /**礼物间隔 */
-    giftPrice?: number;
-    /**礼物图标 */
-    image?: string;
-    /**礼物数量 */
-    num?: number;
-    [property: string]: any;
-}
-
 //---------------------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------------------
-export interface GameEnd {
-    list: GiftItem[]
-}
 
 /** 封神榜单条数据 */
 export interface GodsRecoredItem {
@@ -198,25 +179,6 @@ export interface RecordDetails {
 
 
 /**--------------------------------------------------------中奖记录请求 start------------------------------------------------------------------ */
-export interface RewardResponse {
-    /**
-     * 中奖的礼物id
-     */
-    giftId?: number;
-    /**
-     * 礼物图标
-     */
-    giftImage?: string;
-    /**
-     * 礼物价值
-     */
-    giftPrice?: number;
-    /**
-     * 中奖的id
-     */
-    id?: number;
-    [property: string]: any;
-}
 export interface LuckyEggRecordsResponse {
     /**
      * 奖励列表
@@ -289,6 +251,15 @@ export interface SmashEggReq {
     /** 房间ID */
     roomId: number,
 }
+
+export interface SmashEggItem {
+    giftId: number,
+    giftImage: string,
+    giftName: string,
+    giftPrice: number,
+    id: number,
+    num?: number,
+}
 /**
  * LuckyEggSmashResponse
  */
@@ -296,7 +267,7 @@ export interface SmashEggRes {
     /**
      * 奖励列表
      */
-    rewardList?: RewardResponse[];
+    rewardList?: SmashEggItem[];
     /**
      * 总金币
      */
@@ -370,6 +341,10 @@ export interface RewardResponse {
      * 中奖的id
      */
     id?: number;
+    /**
+     * 数量
+     */
+    num?: number;
 }
 export interface LuckyEggRecordsResponse {
     /**

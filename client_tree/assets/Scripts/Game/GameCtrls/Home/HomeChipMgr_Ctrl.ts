@@ -1,11 +1,14 @@
 import EventMgr from "../../../Framework/Managers/EventMgr";
 import NodePoolMgr from "../../../Framework/Managers/NodePoolMgr";
+import { ResMgr } from "../../../Framework/Managers/ResMgr";
 import UIBase from "../../../Framework/Managers/UIBase";
+import UIMgr, { UILayer } from "../../../Framework/Managers/UIMgr";
 import RandomUtils from "../../../Framework/Utils/RandomUtils";
 import { EventKey } from "../../Config/EventCfg";
-import { RewardResponse, SmashEggRes } from "../../Config/MsgCfg";
-import { AbNames, UICfg } from "../../Config/ResCfg";
+import { RewardResponse, SmashEggItem, SmashEggRes } from "../../Config/MsgCfg";
+import { AbNames, SoundCfg, UICfg } from "../../Config/ResCfg";
 import { IPos, list10, list20, list5 } from "../../Data/GameData";
+import GameLogic from "../../GameLogic";
 import HomeChip_Ctrl from "./HomeChip_Ctrl";
 
 const { ccclass, property } = cc._decorator;
@@ -282,6 +285,7 @@ export default class HomeChipMgr_Ctrl extends UIBase {
       * @param udata 
       */
     private onAddBetRes(uname: string, udata: SmashEggRes) {
+        console.log("=============HomeChipMgr_Ctrl.onAddBetRes===================", udata);
         if (udata) {
             let num = udata.num;
             console.log("=============HomeChipMgr_Ctrl.onAddBetRes1===================", this.listRes.length, num);
@@ -290,16 +294,18 @@ export default class HomeChipMgr_Ctrl extends UIBase {
             this.listRes.push(udata);
             // console.log("=================HomeChipMgr_Ctrl.onAddBetRes2================", isFirst, this.listRes);
             // 生成一组x坐标
-            this.getRandomArr();
+            // this.getRandomArr();
 
-            this.clearNode();
+            // this.clearNode();
 
-            this.playOneGroup();
+            // this.playOneGroup();
             if (num !== 1) {
                 EventMgr.Instance.Emit(EventKey.UI_PLAYTREE, true);
             } else {
                 EventMgr.Instance.Emit(EventKey.UI_PLAYTREE, false);
             }
+
+            this.showEnd(list);
 
             // if (this.isPlayAddBetAni) {
             //     this.isPlayAddBetAni = !this.isPlayAddBetAni;
@@ -310,6 +316,86 @@ export default class HomeChipMgr_Ctrl extends UIBase {
             //     }
             // }
         }
+    }
+
+    private showEnd(list: SmashEggItem[]) {
+        const tempList = this.deepClone(list);
+        let list2 = this.compositeData(tempList);
+        let len = list2.length;
+        console.log("=============HomeChipMgr_Ctrl.showEnd==============", len, list2);
+        GameLogic.Instance.PlayMusic(SoundCfg.end);
+        if (len === 1) {
+            let com = UIMgr.Instance.ShowUIView(UICfg.End1, AbNames.Prefabs, UILayer.UI_Layer2);
+            this.scheduleOnce(() => {
+                com.setData(list2);
+            })
+        } else if (len > 1 && len <= 8) {
+            let com = UIMgr.Instance.ShowUIView(UICfg.End2, AbNames.Prefabs, UILayer.UI_Layer2);
+            this.scheduleOnce(() => {
+                com.setData(list2);
+            })
+        } else {
+            let com = UIMgr.Instance.ShowUIView(UICfg.End3, AbNames.Prefabs, UILayer.UI_Layer2);
+            this.scheduleOnce(() => {
+                com.setData(list2);
+            })
+        }
+    }
+
+    private deepClone<T>(target: T): T {
+        // 如果不是对象或者是null，直接返回（基础类型）
+        if (target === null || typeof target !== 'object') {
+            return target;
+        }
+
+        // 处理日期对象
+        if (target instanceof Date) {
+            return new Date(target.getTime()) as T;
+        }
+
+        // 处理正则表达式
+        if (target instanceof RegExp) {
+            return new RegExp(target.source, target.flags) as T;
+        }
+
+        // 处理数组
+        if (Array.isArray(target)) {
+            const copy = [] as unknown[]; // 创建新数组
+            for (let i = 0; i < target.length; i++) {
+                copy[i] = this.deepClone(target[i]); // 递归拷贝每个元素
+            }
+            return copy as T;
+        }
+
+        // 处理普通对象
+        const copy = {} as { [key: string]: unknown };
+        for (const key in target) {
+            if (Object.prototype.hasOwnProperty.call(target, key)) {
+                copy[key] = this.deepClone(target[key]); // 递归拷贝每个属性
+            }
+        }
+        return copy as T;
+    }
+
+    /**
+  * 整理数据，统计个数
+  * @param list 
+  */
+    private compositeData(list: SmashEggItem[]): SmashEggItem[] {
+        console.log("===========HomeChipMgr_Ctrl.compositeData1=============", list);
+        let res: SmashEggItem[] = [];
+        for (let i = 0; i < list.length; i++) {
+            const ele2: SmashEggItem = list[i];
+            ele2.num = 1;
+            let rwTemp = res.find(item => item.giftId == ele2.giftId);
+            if (!rwTemp) {
+                res.push(ele2);
+            } else {
+                rwTemp.num += 1;
+            }
+        }
+        console.log("===========HomeChipMgr_Ctrl.compositeData2=============", res);
+        return res;
     }
 
     private generateDispersedRandomSequence1(min: number, max: number, minDiff: number, count: number): number[] {
