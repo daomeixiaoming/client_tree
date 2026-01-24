@@ -142,8 +142,8 @@
       "rawHeight": 420,
       "borderTop": 0,
       "borderBottom": 0,
-      "borderLeft": 0,
-      "borderRight": 0,
+      "borderLeft": 18,
+      "borderRight": 18,
       "spriteType": "normal",
       "subMetas": {}
     },
@@ -165,8 +165,8 @@
       "rawHeight": 532,
       "borderTop": 0,
       "borderBottom": 0,
-      "borderLeft": 0,
-      "borderRight": 0,
+      "borderLeft": 18,
+      "borderRight": 18,
       "spriteType": "normal",
       "subMetas": {}
     },

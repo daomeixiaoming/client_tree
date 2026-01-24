@@ -93,11 +93,12 @@ export default class Notice_Ctrl extends UIBase {
             CocosUtils.showToast(Lngs.AgreeNotice);
             return;
         }
+        let storagekey = "agree_notice_today" + NetCfg.gameType;
         if (this.todayTog.isChecked) {
             let date = new Date();
-            cc.sys.localStorage.setItem("agree_notice_today" + NetCfg.gameType, "" + date.getDate());
+            cc.sys.localStorage.setItem(storagekey, "" + date.getDate());
         } else {
-            cc.sys.localStorage.setItem("agree_notice_today" + NetCfg.gameType, "0");
+            cc.sys.localStorage.setItem(storagekey, "0");
         }
         cc.sys.localStorage.setItem("agree_notice", "1");
 

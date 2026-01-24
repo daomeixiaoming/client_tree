@@ -266,9 +266,11 @@ export default class GameLogic extends cc.Component {
   * @param udata 
   */
     private onHttpGameCfgRes(uname: string, udata: IGameCfg) {
+        console.log("==============GameLogic.onHttpGameCfgRes==========", udata);
         if (udata) {
             this.gameCfg = udata;
         }
+        EventMgr.Instance.Emit(EventKey.UI_Notice, "");
     }
 
     /**

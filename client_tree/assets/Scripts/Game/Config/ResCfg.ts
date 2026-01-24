@@ -53,7 +53,8 @@ export const UICfg = {
     RecordGift: "Second/Record/RecordGift",
     RecordItem1: "Second/Record/RecordItem1",
     RecordItem2: "Second/Record/RecordItem2",
-
+    RecordItem3: "Second/Record/RecordItem3",
+    RecordItem4: "Second/Record/RecordItem4",
 };
 
 // spine动画资源

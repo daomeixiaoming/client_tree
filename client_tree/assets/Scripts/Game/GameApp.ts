@@ -256,13 +256,14 @@ export default class GameApp extends cc.Component {
     public showNoticeStatus(pop: number): void {
         // 测试
         // pop = PopType.Pop_Always;
-        DebugUtils.Log("=================================showNoticeStatus=================================", pop);
-        let todayTime = cc.sys.localStorage.getItem("agree_notice_today" + NetCfg.gameType);
+        console.log("=================================showNoticeStatus=================================", pop);
+        let storagekey = "agree_notice_today" + NetCfg.gameType;
+        let todayTime = cc.sys.localStorage.getItem(storagekey);
         let date = new Date();
         let todayDay = date.getDate()
-        // console.log("==========今日不在弹出1==========", todayTime, todayDay);
+        console.log("==========今日不在弹出1==========", todayTime, todayDay);
         if (todayTime !== undefined && Number(todayTime) === todayDay) {
-            // console.log("==========今日不在弹出2==========");
+            console.log("==========今日不在弹出2==========");
             this.showNotice(false);
             return;
         }

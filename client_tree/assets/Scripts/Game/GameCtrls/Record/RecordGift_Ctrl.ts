@@ -10,6 +10,7 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class RecordGift_Ctrl extends UIBase {
     spIcon: any;
+    labBei: cc.Label;
 
     onLoad() {
         super.onLoad();
@@ -27,11 +28,10 @@ export default class RecordGift_Ctrl extends UIBase {
 
     private initUI() {
         this.spIcon = this.ViewComponent("icon/sp", cc.Sprite);
-
+        this.labBei = this.ViewComponent("labBei", cc.Label) as cc.Label
     }
 
     public setData(data: RewardResponse) {
-
         let img = data.giftImage;
         if (img) {
             CocosUtils.loadRemoteSprite(img, this.spIcon, () => {
@@ -45,5 +45,7 @@ export default class RecordGift_Ctrl extends UIBase {
                 }
             })
         }
+        let num = data.num || 1;
+        this.labBei.string = `X${num}`;
     }
 }

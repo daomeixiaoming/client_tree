@@ -1,6 +1,6 @@
 let IP = "192.168.3.225";
 // 网络配置
-const gameDebug = true;// true是debug false 是release
+const gameDebug = false;// true是debug false 是release
 export const NetCfg = {
   IP: IP, //IP 本地127.0.0.1 本地测试10.0.0.151
   PORT: 6086, //端口
@@ -14,11 +14,11 @@ export const NetCfg = {
   /** 游戏id*/
   gameType: 122,
   /** 房间id */
-  roomId: 1000008,
+  roomId: gameDebug ? 1000008 : 10000228,
   /** 主播id */
-  anchorId: 153,
+  anchorId: gameDebug ? 153 : 1000686,
   /** 校验token,网络请求需要 */
-  token: "b02b896adf0b400da9b3fa898e9a41c5",
+  token: gameDebug ? "b02b896adf0b400da9b3fa898e9a41c5" : "47ec2c47a7dc43d6bf36d52fbfabaeb7",
   /** ws长连接使用 */
   bid: "money-tree",
 };

@@ -75,7 +75,7 @@ export default class Home_Ctrl extends UIBase {
         this.updateScore();
 
         let spScoreBg = this.view["node/bg/spScoreBg"] as cc.Node;
-        spScoreBg.active = true;
+        spScoreBg.active = false;
 
         // 初始化声音
         this.setBtnViceSp();
@@ -84,13 +84,16 @@ export default class Home_Ctrl extends UIBase {
         NodePoolMgr.Instance.AddNodePool(AbNames.Prefabs, UICfg.HomeChip, 20);
 
         // 消息跑前面了
-        let cfg = GameLogic.Instance.gameCfg;
-        if (cfg) {
-            GameApp.Instance.showNoticeStatus(cfg.pop || 0);
-        }
+        // let cfg = GameLogic.Instance.gameCfg;
+        // console.log("=========================Home_Ctrl.initUI=============================", cfg);
+        // if (cfg) {
+        //     GameApp.Instance.showNoticeStatus(cfg.pop || 0);
+        // }
+        this.onUINoticeRes("", "")
     }
 
     private registerEvent() {
+        EventMgr.Instance.AddEventListener(EventKey.UI_Notice, this, this.onUINoticeRes);
         EventMgr.Instance.AddEventListener(EventKey.UI_MSG_SMASHEGGRES, this, this.onAddBetRes);
         EventMgr.Instance.AddEventListener(EventKey.Update_Currency, this, this.onUpdateScore);
         EventMgr.Instance.AddEventListener(EventKey.UI_RESETGAME, this, this.onGameScoreNan);
@@ -99,6 +102,7 @@ export default class Home_Ctrl extends UIBase {
     }
 
     private unRegisterEvent() {
+        EventMgr.Instance.RemoveListenner(EventKey.UI_Notice, this, this.onUINoticeRes);
         EventMgr.Instance.RemoveListenner(EventKey.UI_MSG_SMASHEGGRES, this, this.onAddBetRes);
         EventMgr.Instance.RemoveListenner(EventKey.Update_Currency, this, this.onUpdateScore);
         EventMgr.Instance.RemoveListenner(EventKey.UI_RESETGAME, this, this.onGameScoreNan);
@@ -281,7 +285,7 @@ export default class Home_Ctrl extends UIBase {
     private addBet(type: number) {
         this.chioiceType = type;
         this.setAddBetBtnStatus(false);
-
+        // GameApp.Instance.showCoinNan();
         let scoreCur = GameLogic.Instance.getAppScore();
         let chipCfgs = GameLogic.Instance.chipCfgs;
         let cfg = chipCfgs.find(item => item.type === 1);
@@ -293,6 +297,7 @@ export default class Home_Ctrl extends UIBase {
             }, 0.25)
         } else {
             GameApp.Instance.showCoinNan();
+            this.setAddBetBtnStatus(true);
         }
     }
 
@@ -301,6 +306,19 @@ export default class Home_Ctrl extends UIBase {
         this.listlength = 0;
         this.setAddBetBtnStatus(true);
         this.closeAni();
+    }
+
+    /**
+     * 展示免打扰通知
+     * @param uname 
+     * @param udata 
+     */
+    private onUINoticeRes(uname: string, udata: string) {
+        let cfg = GameLogic.Instance.gameCfg;
+        console.log("=========================Home_Ctrl.onUINoticeRes=============================", cfg);
+        if (cfg) {
+            GameApp.Instance.showNoticeStatus(cfg.pop || 0);
+        }
     }
 
     /**
@@ -339,6 +357,7 @@ export default class Home_Ctrl extends UIBase {
      * @param udate 
      */
     private onPlayTreeAni(uname: string, udate: boolean) {
+        console.log("=================Home_Ctrl.onPlayTreeAni================");
         this.showAni(udate);
     }
 

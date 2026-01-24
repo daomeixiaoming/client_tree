@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "RecordItem2",
+    "_name": "RecordItem4",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -46,7 +46,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 702,
-      "height": 196
+      "height": 532
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -113,7 +113,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 702,
-      "height": 196
+      "height": 532
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -165,7 +165,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "84053c3a-cee7-4c5f-a4e6-492bb0873a95"
+      "__uuid__": "aa286e6d-cace-4373-b3b8-ed3e3b59e3f4"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -264,7 +264,7 @@
       "ctor": "Float64Array",
       "array": [
         -327,
-        58.88,
+        226.88,
         0,
         0,
         0,
@@ -409,7 +409,7 @@
       "ctor": "Float64Array",
       "array": [
         327,
-        60.88,
+        228.88,
         0,
         0,
         0,
@@ -765,7 +765,7 @@
       "ctor": "Float64Array",
       "array": [
         -327,
-        22,
+        190,
         0,
         0,
         0,
@@ -803,7 +803,7 @@
       "height": 96
     },
     "_resize": 1,
-    "_N$layoutType": 1,
+    "_N$layoutType": 3,
     "_N$cellSize": {
       "__type__": "cc.Size",
       "width": 40,
@@ -835,7 +835,7 @@
     "_left": 24,
     "_right": 22,
     "_top": 76,
-    "_bottom": 24,
+    "_bottom": 360,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,

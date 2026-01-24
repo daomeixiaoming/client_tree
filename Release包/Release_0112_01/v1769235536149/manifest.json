@@ -1,0 +1,92 @@
+{
+  "version": "v1769235536149",
+  "timestamp": 1769235536976,
+  "forceUpdate": false,
+  "files": [
+    {
+      "name": "core.zip",
+      "url": "https://oss.vvzb.live/game/122/v1769235536149/core.zip",
+      "hash": "7a47e333eb6e6a4bfc3caee7aa3ed5e2",
+      "size": 475198,
+      "priority": 1,
+      "type": "core"
+    },
+    {
+      "name": "Atals.zip",
+      "url": "https://oss.vvzb.live/game/122/v1769235536149/Atals.zip",
+      "hash": "935cf0c7c7ce80f2bbbf57608f97f793",
+      "size": 194878,
+      "priority": 2,
+      "type": "bundle",
+      "dependencies": [
+        "core.zip"
+      ]
+    },
+    {
+      "name": "Guis.zip",
+      "url": "https://oss.vvzb.live/game/122/v1769235536149/Guis.zip",
+      "hash": "898503f4ed20610ec6da5257b5d1f6b5",
+      "size": 487355,
+      "priority": 3,
+      "type": "bundle",
+      "dependencies": [
+        "core.zip"
+      ]
+    },
+    {
+      "name": "internal.zip",
+      "url": "https://oss.vvzb.live/game/122/v1769235536149/internal.zip",
+      "hash": "00e20116e8071202843fbfac7d18312c",
+      "size": 7608,
+      "priority": 4,
+      "type": "bundle",
+      "dependencies": [
+        "core.zip"
+      ]
+    },
+    {
+      "name": "main.zip",
+      "url": "https://oss.vvzb.live/game/122/v1769235536149/main.zip",
+      "hash": "c6fb3bc50a819952983dcc395d61eff4",
+      "size": 502981,
+      "priority": 5,
+      "type": "bundle",
+      "dependencies": [
+        "core.zip"
+      ]
+    },
+    {
+      "name": "Prefabs.zip",
+      "url": "https://oss.vvzb.live/game/122/v1769235536149/Prefabs.zip",
+      "hash": "78f7b94bca3a368591b7759792ae2620",
+      "size": 714813,
+      "priority": 6,
+      "type": "bundle",
+      "dependencies": [
+        "core.zip"
+      ]
+    },
+    {
+      "name": "Sounds.zip",
+      "url": "https://oss.vvzb.live/game/122/v1769235536149/Sounds.zip",
+      "hash": "bae44226105696a160a03cd5b6541f80",
+      "size": 55288,
+      "priority": 7,
+      "type": "bundle",
+      "dependencies": [
+        "core.zip"
+      ]
+    },
+    {
+      "name": "Spines.zip",
+      "url": "https://oss.vvzb.live/game/122/v1769235536149/Spines.zip",
+      "hash": "4b799d55e641debd8bc55151999be05f",
+      "size": 2967063,
+      "priority": 8,
+      "type": "bundle",
+      "dependencies": [
+        "core.zip"
+      ]
+    }
+  ]
+}

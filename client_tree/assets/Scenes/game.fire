@@ -1962,7 +1962,7 @@
       "__id__": 49
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 51
@@ -1982,7 +1982,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 115,
+      "width": 137,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -2034,8 +2034,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "V1.0.8",
-    "_N$string": "V1.0.8",
+    "_string": "V1.0.17",
+    "_N$string": "V1.0.17",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,

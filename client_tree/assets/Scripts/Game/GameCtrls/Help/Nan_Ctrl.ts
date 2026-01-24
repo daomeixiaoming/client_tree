@@ -14,7 +14,7 @@ export default class Nan_Ctrl extends UIBase {
     }
 
     start() {
-
+        this.RunAnimation("node/bg");
     }
 
     private initUI() {

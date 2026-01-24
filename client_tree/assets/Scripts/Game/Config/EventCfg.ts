@@ -6,6 +6,8 @@ export const EventKey = {
 
     UI_Agree_True: "UI_Agree_True",
     UI_Notice_True: "UI_Notice_True",
+    /** 展示免打扰通知 */
+    UI_Notice: "UI_Notice",
 
     UI_Loading: "UI_Loading", //显示加载进度
     UI_LoadingEnd: "UI_LoadingEnd", //显示加载结束
