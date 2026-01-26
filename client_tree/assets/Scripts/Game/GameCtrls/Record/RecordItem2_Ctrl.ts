@@ -52,12 +52,15 @@ export default class RecordItem2_Ctrl extends UIBase {
             this.content.destroyAllChildren();
             let totalPrice = 0;
             for (let i = 0; i < list.length; i++) {
+                let temp = list[i];
                 let item = cc.instantiate(pre);
                 this.content.addChild(item);
                 item.addComponent(RecordGift_Ctrl);
                 item.emit("initGift", list[i]);
 
-                totalPrice += list[i].giftPrice;
+                let nmm = temp.num || 1;
+                totalPrice += (temp.giftPrice * nmm);
+
             }
             this.setScore(totalPrice);
         }

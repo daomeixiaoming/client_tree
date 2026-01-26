@@ -86,6 +86,18 @@ export default class Record_Ctrl extends UIBase {
         let pre3 = ResMgr.Instance.getAsset(AbNames.Prefabs, UICfg.RecordItem3, cc.Prefab) as cc.Prefab;
         let pre4 = ResMgr.Instance.getAsset(AbNames.Prefabs, UICfg.RecordItem4, cc.Prefab) as cc.Prefab;
 
+
+        for (let i = 0; i < list.length; i++) {
+            const ele = list[i];
+            let rlist = ele.rewardList;
+            let total = 0;
+            for (let j = 0; j < rlist.length; j++) {
+                const element = rlist[j];
+                total += element.giftPrice;
+            }
+            console.log("=========RecordView_Ctrl.onGetRecordListRes==11===========", total);
+        }
+
         // 整理数据
         let list2 = this.compositeData(list);
         for (let i = 0; i < list2.length; i++) {
