@@ -1962,7 +1962,7 @@
       "__id__": 49
     },
     "_children": [],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 51
@@ -2034,8 +2034,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "V1.0.20",
-    "_N$string": "V1.0.20",
+    "_string": "V1.0.21",
+    "_N$string": "V1.0.21",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
