@@ -117,8 +117,9 @@ export default class Marquee_Ctrl extends UIBase {
                 widthCur += labTitle.getContentSize().width;
 
                 for (let i = 0; i < list.length; i++) {
+                    // 礼物名称
                     const ele: client.money.tree.IGiftInfo = list[i];
-                    let giftName = `${ele.giftName}x${ele.num}`;
+                    let giftName = `${ele.giftName}`;
                     let labGift = cc.instantiate(lab);
                     let gift = labGift.getComponent(cc.Label);
                     gift.string = giftName;
@@ -127,6 +128,7 @@ export default class Marquee_Ctrl extends UIBase {
                     labGift.opacity = labOpacity;
                     widthCur += labGift.getContentSize().width;
 
+                    //礼物图标
                     let giftIcon = ele.icon || "";
                     let spGift = cc.instantiate(spIcon);
                     widthCur += spGift.getContentSize().width;
@@ -139,6 +141,16 @@ export default class Marquee_Ctrl extends UIBase {
                         item.setScale(parent_size.width / item_size.width)
                     })
                     layout.addChild(spGift);
+
+                    // 礼物数量
+                    let giftNum = `*${ele.num}  `;
+                    let labNum = cc.instantiate(lab);
+                    let num = labNum.getComponent(cc.Label);
+                    num.string = giftNum;
+                    layout.addChild(labNum);
+                    labNum.color = new cc.Color().fromHEX(labColor);
+                    labNum.opacity = labOpacity;
+                    widthCur += labNum.getContentSize().width;
 
                     if (i < list.length - 1) {
                         let labEnd = cc.instantiate(lab);
@@ -239,7 +251,7 @@ export default class Marquee_Ctrl extends UIBase {
             this.msgList.push(itme);
         }
 
-        // // V币数据
+        // V币数据
         // let payout = udata.payout || [];
         // if (payout.length > 0) {
         //     let itme2: IMarqueeItem = {
@@ -247,7 +259,7 @@ export default class Marquee_Ctrl extends UIBase {
         //         list: [],
         //         type: 2
         //     }
-        //     let itemV: client.stone.monster.IGiftInfo = {
+        //     let itemV: client.money.tree.IGiftInfo = {
         //         giftName: "V币",
         //         num: 0,
         //     }
