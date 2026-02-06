@@ -1,7 +1,9 @@
-import { ResMgr } from "./ResMgr";
-import { ResMgrAsync } from "./ResMgrAsync";
+import { NetCfg } from "../../Game/Config/NetCfg";
 
 const { ccclass, property } = cc._decorator;
+
+export const SoundKey = `GAME_SOUND_MUTE_${NetCfg.gameType}`;
+export const MusicKey = `GAME_MUSIC_MUTE_${NetCfg.gameType}`;
 
 /** 音乐音效管理器 */
 @ccclass
@@ -36,23 +38,23 @@ export default class SoundMgr extends cc.Component {
         this.bgMusic = this.node.addComponent(cc.AudioSource) as cc.AudioSource;
 
         // 从本地存储里面把设置读出来, 0, 1, 1关闭声音 0是开启声音
-        var value = localStorage.getItem("GAME_MUSIC_MUTE");
+        var value = cc.sys.localStorage.getItem(MusicKey);
         console.log("=============GAME_MUSIC_MUTE=====================", value);
         if (value) {
             let v = parseInt(value);
             this.isMusicMute = (v === 1) ? true : false;
-        } else {
-            localStorage.setItem("GAME_MUSIC_MUTE", "1");
         }
+        let res = this.isSoundMute ? "1" : "0";
+        cc.sys.localStorage.setItem(MusicKey, res);
 
-        value = localStorage.getItem("GAME_SOUND_MUTE");
+        value = cc.sys.localStorage.getItem(SoundKey);
         console.log("=============GAME_SOUND_MUTE=====================", value);
         if (value) {
             let v = parseInt(value);
             this.isSoundMute = (v === 1) ? true : false;
-        } else {
-            localStorage.setItem("GAME_SOUND_MUTE", "1");
         }
+        let res1 = this.isSoundMute ? "1" : "0";
+        cc.sys.localStorage.setItem(SoundKey, res1);
     }
 
     // 播放背景音乐
@@ -98,6 +100,9 @@ export default class SoundMgr extends cc.Component {
 
         let id = cc.audioEngine.playEffect(clip, false);
         cc.audioEngine.setVolume(id, voice)
+        cc.audioEngine.setFinishCallback(id, () => {
+            cc.audioEngine.stop(id);
+        });
     }
 
     public playSoundOneShot(clip: cc.AudioClip): void {
@@ -122,7 +127,7 @@ export default class SoundMgr extends cc.Component {
 
         // localStorage
         let value = (isMute) ? 1 : 0;
-        localStorage.setItem("GAME_MUSIC_MUTE", value.toString());
+        cc.sys.localStorage.setItem(MusicKey, value.toString());
         // end
     }
 
@@ -132,7 +137,7 @@ export default class SoundMgr extends cc.Component {
 
         // localStorage
         let value = (isMute) ? 1 : 0;
-        localStorage.setItem("GAME_SOUND_MUTE", value.toString());
+        cc.sys.localStorage.setItem(SoundKey, value.toString());
 
         for (let i = 0; i < this.sounds.length; i++) {
             let as: cc.AudioSource = this.sounds[i];

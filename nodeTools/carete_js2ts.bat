@@ -1,1 +1,1 @@
-npx pbts -o ./protos/game_pb.d.ts ./protos/game_pb.js
+npx pbts -o ./out/game_pb.d.ts ./out/game_pb.js

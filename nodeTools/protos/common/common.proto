@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package common;
 
-option java_package = "com.org.platform.websocket.common";
+option java_package = "cn.jumiao.logic.ws.common";
 
 message Empty {
 

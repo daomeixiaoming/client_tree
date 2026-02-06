@@ -1,8 +1,9 @@
 syntax = "proto3";
+import "common/common.proto";
 
 package client;
 
-option java_package = "com.org.platform.websocket.client";
+option java_package = "cn.jumiao.logic.ws.client";
 
 enum RequestCode {
   INVALID_REQUEST = 0;
@@ -20,12 +21,12 @@ enum ResponseCode {
 message Request {
   RequestCode cmd = 1;
   // 没有body的消息，可以不传body，但只要传了body，oneof 里的就必须设置一个
-//  RequestBody body = 2;
+  RequestBody body = 2;
 }
 
 message RequestBody {
   oneof body {
-    Test demo = 1;
+    common.Empty demo = 1;
   }
 }
 message Response {
@@ -36,15 +37,6 @@ message Response {
 
 message ResponseBody {
   oneof body {
-    ErrorMessage error = 1;
+    common.ErrorMessage error = 1;
   }
-}
-
-message Test {
-
-}
-
-message ErrorMessage {
-  int32 code = 1;
-  string msg = 2;
 }

@@ -1,1 +1,1 @@
-npx pbjs -t static-module -w commonjs -o ./protos/game_pb.js ./protos/sea-game.proto
+npx pbjs -t static-module -w commonjs -o ./out/game_pb.js ./protos/money-tree.proto

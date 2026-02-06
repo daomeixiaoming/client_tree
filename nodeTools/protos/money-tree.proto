@@ -1,0 +1,81 @@
+syntax = "proto3";
+package client.money.tree;
+option java_package = "cn.jumiao.money.tree.ws.client";
+import "common/common.proto";
+
+enum RequestCode {
+    INVALID_REQUEST = 0;
+    PING = 1;
+
+    //#########################
+    //
+    //     100以前给system用
+    //
+    //#########################
+}
+
+enum ResponseCode {
+    INVALID_RESPONSE = 0;
+    PONG = 1;
+    ERROR = 2;
+
+    //#########################
+    //
+    //     100以前给system用
+    //
+    //#########################
+
+    // 中奖信息
+    MONEY_TREE_REWARD = 100;
+}
+
+message Request {
+    RequestCode cmd = 1;
+    // 没有body的消息，可以不传body，但只要传了body，oneof 里的就必须设置一个
+    RequestBody body = 2;
+}
+
+message RequestBody {
+    oneof body {
+        common.Empty empty = 1;
+
+        //#########################
+        //
+        //     100以前给system用
+        //
+        //#########################
+    }
+}
+message Response {
+    ResponseCode cmd = 1;
+    // 没有body的消息，可以不传body，但只要传了body，oneof 里的就必须设置一个
+    ResponseBody body = 2;
+}
+
+message ResponseBody {
+    oneof body {
+        common.ErrorMessage error = 1;
+        //#########################
+        //
+        //     100以前给system用
+        //
+        //#########################
+
+        // 中奖信息
+        RewardInfo rewardInfo = 100;
+    }
+}
+
+// 左上角用户中奖广播消息
+message RewardInfo {
+    // 用户昵称
+    string nickname = 1;
+    // 中奖礼物数组
+    repeated GiftInfo reward = 2;
+}
+
+message GiftInfo {
+    string giftName = 1;
+    int32 num = 2;
+    string icon = 3;
+}

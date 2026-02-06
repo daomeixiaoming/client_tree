@@ -292,7 +292,8 @@ export default class GameApp extends cc.Component {
     }
 
     private checkNotice(flag: number): void {
-        let lastTime = cc.sys.localStorage.getItem("agree_notice_pop");
+        let key = `agree_notice_pop_${NetCfg.gameType}`;
+        let lastTime = cc.sys.localStorage.getItem(key);
         let oldDate = null;
         if (lastTime) {
             oldDate = new Date(Number(lastTime));

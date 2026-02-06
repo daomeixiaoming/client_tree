@@ -56,14 +56,14 @@ export default class NetWsMgr extends cc.Component {
      */
     private onWsEventMsg(uname: string, udata: ArrayBuffer): void {
         const uint8Array = new Uint8Array(udata);
-        let buf = client.lucky_egg.Response.decode(uint8Array);
+        let buf = client.money.tree.Response.decode(uint8Array);
         console.log("===========NetWsMgr.onWsEventMsg=========", udata);
         if (buf) {
             let ctype = buf.cmd;
             let body = buf.body;
             // DebugUtils.Log("========NetWsMgr onWsEventMsg==========", ctype);
             switch (ctype) {
-                case client.lucky_egg.ResponseCode.LUCKY_EGG_REWARD: //跑马灯
+                case client.money.tree.ResponseCode.MONEY_TREE_REWARD: //跑马灯
                     this.onMarqueeInfo(body);
                     break;
             }
@@ -71,7 +71,7 @@ export default class NetWsMgr extends cc.Component {
     }
 
     // 跑马灯数据
-    private onMarqueeInfo(data: client.lucky_egg.IResponseBody) {
+    private onMarqueeInfo(data: client.money.tree.IResponseBody) {
         console.log("==============onMarqueeInfo============", data);
         if (data && data.rewardInfo) {
             const rewardInfo = data.rewardInfo;

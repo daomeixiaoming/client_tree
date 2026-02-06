@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package server;
 
-option java_package = "com.org.platform.websocket.server";
+option java_package = "cn.jumiao.logic.ws.server";
 
 message WebSocketEventInfo {
   string bid = 1;

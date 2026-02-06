@@ -2,7 +2,7 @@ import EventMgr from "../../../Framework/Managers/EventMgr";
 import NodePoolMgr from "../../../Framework/Managers/NodePoolMgr";
 import { ResMgr } from "../../../Framework/Managers/ResMgr";
 import { ResMgrAsync } from "../../../Framework/Managers/ResMgrAsync";
-import SoundMgr from "../../../Framework/Managers/SoundMgr";
+import SoundMgr, { SoundKey } from "../../../Framework/Managers/SoundMgr";
 import UIBase from "../../../Framework/Managers/UIBase";
 import DebugUtils from "../../../Framework/Utils/DebugUtils";
 import GameUtils from "../../../Framework/Utils/GameUtils";
@@ -226,7 +226,7 @@ export default class Home_Ctrl extends UIBase {
      * @param button 
      */
     private onVoiceClick(button: cc.Button) {
-        let value = localStorage.getItem("GAME_SOUND_MUTE");
+        let value = cc.sys.localStorage.getItem(SoundKey);
         let v = parseInt(value);
         let isOpen = v === 0 ? true : false;
         DebugUtils.Log("=====================onVoiceClick=====================", value, isOpen);
@@ -237,7 +237,7 @@ export default class Home_Ctrl extends UIBase {
 
     // 设置声音按钮的图片状态
     private setBtnViceSp(): void {
-        let value = localStorage.getItem("GAME_SOUND_MUTE");
+        let value = cc.sys.localStorage.getItem(SoundKey);
         // DebugUtils.Log("==========setBtnViceSp设置声音按钮的图片状态==============", value);
         let v = parseInt(value);
         let sp_voice = this.ViewComponent("node/bg/btnVoice/sp", cc.Sprite) as cc.Sprite;

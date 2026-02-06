@@ -103,11 +103,11 @@ export class NetMgr extends cc.Component {
   // 收到消息
   private _on_recv_data(event: any) {
     const uint8Array = new Uint8Array(event.data);
-    let buf = client.lucky_egg.Response.decode(uint8Array);
+    let buf = client.money.tree.Response.decode(uint8Array);
     console.warn("==========_on_recv_data=============", buf);
     if (buf) {
       let ctype = buf.cmd;
-      if (ctype === client.lucky_egg.ResponseCode.PONG) {
+      if (ctype === client.money.tree.ResponseCode.PONG) {
         //收到心跳
         this.resetTimeout();
       } else {

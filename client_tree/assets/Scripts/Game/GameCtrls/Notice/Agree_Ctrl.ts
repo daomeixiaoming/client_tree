@@ -2,6 +2,7 @@ import EventMgr from "../../../Framework/Managers/EventMgr";
 import UIBase from "../../../Framework/Managers/UIBase";
 import { EventKey } from "../../Config/EventCfg";
 import { Lngs } from "../../Config/LngCfg";
+import { NetCfg } from "../../Config/NetCfg";
 
 const { ccclass, property } = cc._decorator;
 /**
@@ -34,7 +35,8 @@ export default class Agree_Ctrl extends UIBase {
     }
 
     private onBtnClick(): void {
-        cc.sys.localStorage.setItem("agree_notice", "1");
+        let key = `agree_notice_${NetCfg.gameType}`;
+        cc.sys.localStorage.setItem(key, "1");
         EventMgr.Instance.Emit(EventKey.UI_Agree_True, "");
         this.onBtnCloseClick();
     }

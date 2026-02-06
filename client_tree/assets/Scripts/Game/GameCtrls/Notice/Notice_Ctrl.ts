@@ -61,7 +61,8 @@ export default class Notice_Ctrl extends UIBase {
         this.lab3.string = Lngs.Notice_Txt3;
         this.labContent.string = Lngs.Notice;
 
-        let str = cc.sys.localStorage.getItem("agree_notice");
+        let key = `agree_notice_${NetCfg.gameType}`;
+        let str = cc.sys.localStorage.getItem(key);
         if (str) {
             this.agreeTog.isChecked = true;
         }
@@ -79,7 +80,8 @@ export default class Notice_Ctrl extends UIBase {
     protected onDestroy(): void {
         this.unRegisterEvent();
         let time = new Date().getTime();
-        cc.sys.localStorage.setItem("agree_notice_pop", time);
+        let key = `agree_notice_pop_${NetCfg.gameType}`;
+        cc.sys.localStorage.setItem(key, time);
     }
 
     private onEventAgreeTrue(uname: string, udata: any): void {
@@ -88,8 +90,9 @@ export default class Notice_Ctrl extends UIBase {
 
     // 点击同意
     private onBtnAgreeClick(): void {
+        let key = `agree_notice_${NetCfg.gameType}`;
         if (!this.agreeTog.isChecked) {
-            cc.sys.localStorage.setItem("agree_notice", "0");
+            cc.sys.localStorage.setItem(key, "0");
             CocosUtils.showToast(Lngs.AgreeNotice);
             return;
         }
@@ -100,7 +103,7 @@ export default class Notice_Ctrl extends UIBase {
         } else {
             cc.sys.localStorage.setItem(storagekey, "0");
         }
-        cc.sys.localStorage.setItem("agree_notice", "1");
+        cc.sys.localStorage.setItem(key, "1");
 
         cc.Tween.stopAllByTarget(this.bgNode);
         cc.tween(this.bgNode)
