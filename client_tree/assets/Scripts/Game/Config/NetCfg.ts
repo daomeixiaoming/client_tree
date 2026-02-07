@@ -1,6 +1,6 @@
 let IP = "192.168.3.225";
 // 网络配置
-const gameDebug = true; // true是debug false 是release
+const gameDebug = false; // true是debug false 是release
 export const NetCfg = {
   IP: IP, //IP 本地127.0.0.1 本地测试10.0.0.151
   PORT: 6086, //端口
