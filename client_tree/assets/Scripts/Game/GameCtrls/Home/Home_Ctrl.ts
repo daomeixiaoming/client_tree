@@ -99,6 +99,7 @@ export default class Home_Ctrl extends UIBase {
         EventMgr.Instance.AddEventListener(EventKey.UI_RESETGAME, this, this.onGameScoreNan);
         EventMgr.Instance.AddEventListener(EventKey.UI_PLAYTREE, this, this.onPlayTreeAni);
         EventMgr.Instance.AddEventListener(EventKey.UI_STOPTREE, this, this.onStopTreeAni);
+        EventMgr.Instance.AddEventListener(EventKey.UI_Continue, this, this.onContinue);
     }
 
     private unRegisterEvent() {
@@ -108,6 +109,7 @@ export default class Home_Ctrl extends UIBase {
         EventMgr.Instance.RemoveListenner(EventKey.UI_RESETGAME, this, this.onGameScoreNan);
         EventMgr.Instance.RemoveListenner(EventKey.UI_PLAYTREE, this, this.onPlayTreeAni);
         EventMgr.Instance.RemoveListenner(EventKey.UI_STOPTREE, this, this.onStopTreeAni);
+        EventMgr.Instance.RemoveListenner(EventKey.UI_Continue, this, this.onContinue);
     }
 
     /**
@@ -367,5 +369,13 @@ export default class Home_Ctrl extends UIBase {
      */
     private onStopTreeAni(uname: string, udate: string) {
         this.onAniEnd();
+    }
+
+    /**
+     * 点击继续
+     */
+    private onContinue(uname: string, udata: string) {
+        let type = this.chioiceType;
+        this.addBet(type);
     }
 }

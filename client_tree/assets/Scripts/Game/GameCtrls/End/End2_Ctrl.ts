@@ -12,6 +12,8 @@ const { ccclass, property } = cc._decorator;
 export default class End2_Ctrl extends UIBase {
     layout: cc.Node;
     labPrice: cc.Label;
+    timeCur: number;
+    labTime: cc.Label;
     onLoad() {
         super.onLoad();
         this.initUI();
@@ -29,9 +31,26 @@ export default class End2_Ctrl extends UIBase {
 
     private initUI() {
         this.AddButtonListener("node/bg/btnClose", this, this.onCloseBtn);
+        this.AddButtonListener("node/bg/btnContinue", this, this.onContinueClick);
         this.layout = this.view["node/bg/layout2"] as cc.Node;
         this.labPrice = this.ViewComponent("node/bg/layout/labPrice", cc.Label) as cc.Label;
         this.labPrice.string = "";
+
+        this.timeCur = 5;
+        this.labTime = this.ViewComponent("node/bg/btnContinue/layout/lab", cc.Label) as cc.Label;
+        this.labTime.string = `${this.timeCur}s`
+        this.schedule(() => {
+            this.timeCur--;
+            this.labTime.string = `${this.timeCur}s`;
+            if (this.timeCur <= 0) {
+                this.node.destroy();
+            }
+        }, 1, 5, 0);
+    }
+
+    private onContinueClick(button: cc.Button) {
+        EventMgr.Instance.Emit(EventKey.UI_Continue, "");
+        this.node.destroy();
     }
 
     public setData(data: RewardResponse[]) {

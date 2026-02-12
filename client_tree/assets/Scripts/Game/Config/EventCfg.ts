@@ -12,6 +12,8 @@ export const EventKey = {
     UI_Loading: "UI_Loading", //显示加载进度
     UI_LoadingEnd: "UI_LoadingEnd", //显示加载结束
     UI_GotoLogin: "UI_GotoLogin", //大厅返回到登录页
+    /** 继续摇树 */
+    UI_Continue: "UI_Continue",
 
     /** 更新瞄钻和龙币数据 */
     Update_Currency: "Update_Currency",
